@@ -6,7 +6,8 @@ import { GoogleTranslationService } from '../util/google-translation.service';
 import { LANGS } from '../util/languages';
 import { CloudCredentialsMessage } from '../util/tooltips-messages';
 
-// TODO - sort langs, validators message, transform lang code to desc,
+// TODO JDOC, readme, tests
+
 @Component({
   selector: 'lib-ng-google-translate-ui',
   templateUrl: './ng-google-translate-ui.component.html',
@@ -31,6 +32,9 @@ export class NgGoogleTranslateUiComponent {
     private snackBar: MatSnackBar
   ) {}
 
+  /**
+   * @returns void - Fetches the translations from Cloud Translation API using the provided API key.
+   */
   onSearch(): void {
     this.translations = {};
 
@@ -51,16 +55,27 @@ export class NgGoogleTranslateUiComponent {
       });
   }
 
+  /**
+   * @returns void - Resets the input value in textarea and selected target languages.
+   */
   onReset(): void {
     this.multiTranslateForm.get('sourceText')?.setValue('');
     this.multiTranslateForm.get('targetLangs')?.setValue([]);
   }
 
+  /**
+   * @param  e - Event to stop propagation.
+   * @returns void - navigates user to Google Cloud Console in the new browser tab.
+   */
   onCloudCredentialsHelpClick(e: Event): void {
     e.stopPropagation();
     window.open('https://console.cloud.google.com/', 'parent');
   }
 
+  /**
+   * @param  lang - Language code.
+   * @returns void - Shows the message to the user.
+   */
   openSnackBar(lang: string): void {
     this.snackBar.open(`Copied translation for ${lang} language!`, 'X', {
       duration: 4000,

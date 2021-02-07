@@ -4,7 +4,7 @@
       <mat-card-title>Translator</mat-card-title>
       <mat-card-subtitle>Cloud Translation API</mat-card-subtitle>
     </mat-card-header>
-    <!--TODO tooltips-->
+
     <mat-card-content>
       <div [formGroup]="multiTranslateForm" class="content">
         <div class="fields">
@@ -24,9 +24,12 @@
             >
               help_outline
             </mat-icon>
+            <mat-error *ngIf="multiTranslateForm.get('apiKey').invalid"
+              >Required to fetch translations!</mat-error
+            >
           </mat-form-field>
 
-          <mat-form-field class="full-width">
+          <mat-form-field class="full-width padding">
             <mat-label>Insert text</mat-label>
             <textarea
               matInput
@@ -34,9 +37,12 @@
               formControlName="sourceText"
               placeholder="Text to translate"
             ></textarea>
+            <mat-error *ngIf="multiTranslateForm.get('sourceText').invalid"
+              >Insert text to translate!</mat-error
+            >
           </mat-form-field>
 
-          <mat-form-field appearance="fill" class="full-width">
+          <mat-form-field appearance="fill" class="full-width padding">
             <mat-label>To</mat-label>
             <mat-select formControlName="targetLangs" multiple>
               <mat-option
@@ -45,6 +51,9 @@
                 >{{ lang.value }}</mat-option
               >
             </mat-select>
+            <mat-error *ngIf="multiTranslateForm.get('targetLangs').invalid"
+              >Choose at least one target language!</mat-error
+            >
           </mat-form-field>
         </div>
       </div>
@@ -55,11 +64,17 @@
         color="primary"
         (click)="onSearch()"
         [disabled]="!multiTranslateForm.valid"
+        matTooltip="Fetch translations"
       >
         Translate
       </button>
 
-      <button mat-raised-button color="primary" (click)="onReset()">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="onReset()"
+        matTooltip="Clear input and selected languages"
+      >
         Reset
       </button>
     </mat-card-actions>
@@ -71,13 +86,15 @@
       >
         <mat-list-item>
           <p>
-            <b> {{ translation.key }}: </b> {{ translation.value }}
+            <b> {{ languages[translation.key.toLowerCase()] }}: </b>
+            {{ translation.value }}
           </p>
 
           <button mat-icon-button>
             <mat-icon
               matListIcon
               class="clipboard-copy"
+              matTooltip="Copy text"
               [cdkCopyToClipboard]="translation.value"
               (click)="openSnackBar(translation.key)"
               >content_copy</mat-icon

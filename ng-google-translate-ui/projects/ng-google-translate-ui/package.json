@@ -1,11 +1,33 @@
 {
 	"name": "ng-google-translate-ui",
-	"version": "0.0.52",
+	"version": "0.0.53",
 	"peerDependencies": {
 		"@angular/common": "^11.1.2",
 		"@angular/core": "^11.1.2"
 	},
 	"dependencies": {
 		"tslib": "^2.0.0"
+	},
+	"author": {
+		"name": "Dino Klicek",
+		"email": "dineeek@gmail.com"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/dineeek/ng-google-translate-ui"
+	},
+	"description": "Angular Material Google Translate UI",
+	"keywords": [
+		"google",
+		"translate",
+		"multi",
+		"angular"
+	],
+	"homepage": "https://github.com/dineeek/ng-google-translate-ui/blob/main/README.md",
+	"bugs": {
+		"url": "https://github.com/dineeek/ng-google-translate-ui/issues"
 	}
 }

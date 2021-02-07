@@ -47,7 +47,7 @@
 		}
 
 		.lang-desc {
-			letter-spacing: 0.5px;
+			letter-spacing: 0.25px;
 			font-weight: 500;
 		}
 
@@ -68,5 +68,9 @@
 	.mat-list-base .mat-list-item.mat-list-item-with-avatar,
 	.mat-list-base .mat-list-option.mat-list-item-with-avatar {
 		height: fit-content !important;
+	}
+
+	.tooltip-inner {
+		white-space: pre-line;
 	}
 }

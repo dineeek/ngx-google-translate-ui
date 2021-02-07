@@ -16,9 +16,7 @@ import { CloudCredentialsMessage } from '../util/tooltips-messages';
 })
 export class NgGoogleTranslateUiComponent {
 	languages = LANGS;
-
 	cloudCredentialsTooltip = CloudCredentialsMessage;
-
 	translations: { [key: string]: string } = {};
 
 	multiTranslateForm = new FormGroup({
@@ -26,6 +24,10 @@ export class NgGoogleTranslateUiComponent {
 		sourceText: new FormControl('', Validators.required),
 		targetLangs: new FormControl([], Validators.required)
 	});
+
+	/* 	originalOrder = (): number => {
+		return 0;
+	}; */
 
 	constructor(
 		private googleService: GoogleTranslationService,
@@ -78,7 +80,7 @@ export class NgGoogleTranslateUiComponent {
 	 */
 	openSnackBar(lang: string): void {
 		this.snackBar.open(`Copied translation for ${lang} language!`, 'X', {
-			duration: 4000
+			duration: 5000
 		});
 	}
 }

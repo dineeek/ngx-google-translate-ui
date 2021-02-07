@@ -1,5 +1,5 @@
 export const LANGS: { [key: string]: string } = {
-	//auto: 'Automatic',
+	// auto: 'Automatic', // not really needed
 	af: 'Afrikaans',
 	sq: 'Albanian',
 	am: 'Amharic',

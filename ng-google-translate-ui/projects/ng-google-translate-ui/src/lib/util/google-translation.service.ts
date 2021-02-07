@@ -22,7 +22,7 @@ export class GoogleTranslationService {
 		apiKey: string,
 		transBody: GoogleTranslationBodyModel
 	): Observable<GoogleTranslation> {
-		return this.httpClient.post(this.url + apiKey, transBody).pipe(
+		return this.httpClient.post(`${this.url}${apiKey}`, transBody).pipe(
 			map((response: any) => {
 				return {
 					translatedText: response.data.translations[0].translatedText,

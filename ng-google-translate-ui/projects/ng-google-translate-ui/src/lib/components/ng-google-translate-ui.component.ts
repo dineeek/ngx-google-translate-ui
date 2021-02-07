@@ -1,6 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { GoogleTranslationBodyModel } from '../models/google-translation.model';
 import { GoogleTranslationService } from '../util/google-translation.service';
 import { LANGS } from '../util/languages';
@@ -18,7 +17,7 @@ export class NgGoogleTranslateUiComponent {
 	languages = LANGS;
 	cloudCredentialsTooltip = CloudCredentialsMessage;
 	translations: { [key: string]: string } = {};
-	emptyTranslations = true;
+	areTranslationsEmpty = true;
 
 	multiTranslateForm = new FormGroup({
 		apiKey: new FormControl('', Validators.required),
@@ -30,10 +29,7 @@ export class NgGoogleTranslateUiComponent {
 		return 0;
 	};
 
-	constructor(
-		private googleService: GoogleTranslationService,
-		private snackBar: MatSnackBar
-	) {}
+	constructor(private googleService: GoogleTranslationService) {}
 
 	/**
 	 * @returns void - Fetches the translations from Cloud Translation API using the provided API key.
@@ -55,9 +51,9 @@ export class NgGoogleTranslateUiComponent {
 
 				this.translations[targetLang.toUpperCase()] =
 					translation.translatedText;
-			});
 
-		this.emptyTranslations = false;
+				this.areTranslationsEmpty = false;
+			});
 	}
 
 	/**
@@ -67,7 +63,7 @@ export class NgGoogleTranslateUiComponent {
 		this.multiTranslateForm.get('sourceText')?.setValue('');
 		this.multiTranslateForm.get('targetLangs')?.setValue([]);
 		this.translations = {};
-		this.emptyTranslations = true;
+		this.areTranslationsEmpty = true;
 	}
 
 	/**
@@ -77,26 +73,5 @@ export class NgGoogleTranslateUiComponent {
 	onCloudCredentialsHelpClick(e: Event): void {
 		e.stopPropagation();
 		window.open('https://console.cloud.google.com/', 'parent');
-	}
-
-	/**
-	 * @param  lang - Language code.
-	 * @returns void - Shows the message to the user.
-	 */
-	openSnackBar(lang?: string): void {
-		lang
-			? this.snackBar.open(`Copied translation for ${lang} language!`, 'X', {
-					duration: 5000
-			  })
-			: this.snackBar.open(`Copied translation for all languages!`, 'X', {
-					duration: 5000
-			  });
-	}
-
-	/**
-	 * @returns string - JSON stringified fetched translations.
-	 */
-	onCopyAll(): string {
-		return JSON.stringify(this.translations);
 	}
 }

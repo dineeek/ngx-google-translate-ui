@@ -11,10 +11,11 @@ import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { NgGoogleTranslateUiComponent } from './component/ng-google-translate-ui.component';
+import { NgGoogleTranslateUiComponent } from './components/ng-google-translate-ui.component';
+import { TranslationResultsComponent } from './components/translation-results/translation-results.component';
 
 @NgModule({
-	declarations: [NgGoogleTranslateUiComponent],
+	declarations: [NgGoogleTranslateUiComponent, TranslationResultsComponent],
 	imports: [
 		CommonModule,
 		ReactiveFormsModule,

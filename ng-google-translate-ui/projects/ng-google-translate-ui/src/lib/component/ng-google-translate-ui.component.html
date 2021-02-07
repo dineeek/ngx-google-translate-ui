@@ -80,7 +80,9 @@
 		</mat-card-actions>
 
 		<div *ngIf="!emptyTranslations">
-			<mat-list *ngFor="let translation of translations | keyvalue">
+			<mat-list
+				*ngFor="let translation of translations | keyvalue: originalOrder"
+			>
 				<mat-list-item>
 					<span class="span-padding">
 						<p class="paragraph-text">

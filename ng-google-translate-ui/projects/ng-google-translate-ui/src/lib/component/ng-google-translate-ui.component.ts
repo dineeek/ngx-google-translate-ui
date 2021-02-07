@@ -6,7 +6,7 @@ import { GoogleTranslationService } from '../util/google-translation.service';
 import { LANGS } from '../util/languages';
 import { CloudCredentialsMessage } from '../util/tooltips-messages';
 
-// TODO JDOC, readme, tests
+// TODO readme, tests
 
 @Component({
 	selector: 'lib-ng-google-translate-ui',

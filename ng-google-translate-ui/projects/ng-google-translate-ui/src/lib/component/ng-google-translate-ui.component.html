@@ -1,108 +1,108 @@
 <div class="translator-container">
-  <mat-card class="card">
-    <mat-card-header>
-      <mat-card-title>Translator</mat-card-title>
-      <mat-card-subtitle>Cloud Translation API</mat-card-subtitle>
-    </mat-card-header>
+	<mat-card class="card">
+		<mat-card-header>
+			<mat-card-title>Translator</mat-card-title>
+			<mat-card-subtitle>Cloud Translation API</mat-card-subtitle>
+		</mat-card-header>
 
-    <mat-card-content>
-      <div [formGroup]="multiTranslateForm" class="content">
-        <div class="fields">
-          <mat-form-field class="custom-width">
-            <mat-label>Google API key</mat-label>
-            <input
-              matInput
-              formControlName="apiKey"
-              placeholder="Google API key"
-            />
-            <mat-icon
-              matSuffix
-              class="cloud-credentials"
-              (click)="onCloudCredentialsHelpClick($event)"
-              [matTooltip]="cloudCredentialsTooltip"
-              matTooltipPosition="below"
-            >
-              help_outline
-            </mat-icon>
-            <mat-error *ngIf="multiTranslateForm.get('apiKey').invalid"
-              >Required to fetch translations!</mat-error
-            >
-          </mat-form-field>
+		<mat-card-content>
+			<div [formGroup]="multiTranslateForm" class="content">
+				<div class="fields">
+					<mat-form-field class="custom-width">
+						<mat-label>Google API key</mat-label>
+						<input
+							matInput
+							formControlName="apiKey"
+							placeholder="Google API key"
+						/>
+						<mat-icon
+							matSuffix
+							class="cloud-credentials"
+							(click)="onCloudCredentialsHelpClick($event)"
+							[matTooltip]="cloudCredentialsTooltip"
+							matTooltipPosition="below"
+						>
+							help_outline
+						</mat-icon>
+						<mat-error *ngIf="multiTranslateForm.get('apiKey').invalid"
+							>Required to fetch translations!</mat-error
+						>
+					</mat-form-field>
 
-          <mat-form-field class="full-width padding">
-            <mat-label>Insert text</mat-label>
-            <textarea
-              matInput
-              class="textarea"
-              formControlName="sourceText"
-              placeholder="Text to translate"
-            ></textarea>
-            <mat-error *ngIf="multiTranslateForm.get('sourceText').invalid"
-              >Insert text to translate!</mat-error
-            >
-          </mat-form-field>
+					<mat-form-field class="full-width padding">
+						<mat-label>Insert text</mat-label>
+						<textarea
+							matInput
+							class="textarea"
+							formControlName="sourceText"
+							placeholder="Text to translate"
+						></textarea>
+						<mat-error *ngIf="multiTranslateForm.get('sourceText').invalid"
+							>Insert text to translate!</mat-error
+						>
+					</mat-form-field>
 
-          <mat-form-field appearance="fill" class="full-width padding">
-            <mat-label>To</mat-label>
-            <mat-select formControlName="targetLangs" multiple>
-              <mat-option
-                *ngFor="let lang of languages | keyvalue"
-                [value]="lang.key"
-                >{{ lang.value }}</mat-option
-              >
-            </mat-select>
-            <mat-error *ngIf="multiTranslateForm.get('targetLangs').invalid"
-              >Choose at least one target language!</mat-error
-            >
-          </mat-form-field>
-        </div>
-      </div>
-    </mat-card-content>
-    <mat-card-actions align="end" class="buttons">
-      <button
-        mat-raised-button
-        color="primary"
-        (click)="onSearch()"
-        [disabled]="!multiTranslateForm.valid"
-        matTooltip="Fetch translations"
-      >
-        Translate
-      </button>
+					<mat-form-field appearance="fill" class="full-width padding">
+						<mat-label>To</mat-label>
+						<mat-select formControlName="targetLangs" multiple>
+							<mat-option
+								*ngFor="let lang of languages | keyvalue: originalOrder"
+								[value]="lang.key"
+								>{{ lang.value }}</mat-option
+							>
+						</mat-select>
+						<mat-error *ngIf="multiTranslateForm.get('targetLangs').invalid"
+							>Choose at least one target language!</mat-error
+						>
+					</mat-form-field>
+				</div>
+			</div>
+		</mat-card-content>
+		<mat-card-actions align="end" class="buttons">
+			<button
+				mat-raised-button
+				color="primary"
+				(click)="onSearch()"
+				[disabled]="!multiTranslateForm.valid"
+				matTooltip="Fetch translations"
+			>
+				Translate
+			</button>
 
-      <button
-        mat-raised-button
-        color="primary"
-        (click)="onReset()"
-        matTooltip="Clear input and selected languages"
-      >
-        Reset
-      </button>
-    </mat-card-actions>
+			<button
+				mat-raised-button
+				color="primary"
+				(click)="onReset()"
+				matTooltip="Clear input and selected languages"
+			>
+				Reset
+			</button>
+		</mat-card-actions>
 
-    <div [hidden]="!translations">
-      <mat-list *ngFor="let translation of translations | keyvalue">
-        <mat-list-item>
-          <p>
-            <p class="lang-desc">
-              {{ languages[translation.key.toLowerCase()] }}:
-            </p>
-            {{ translation.value }}
-          </p>
+		<div [hidden]="!translations">
+			<mat-list *ngFor="let translation of translations | keyvalue">
+				<mat-list-item>
+					<span class="span-padding">
+						<p class="paragraph-text">
+							{{ languages[translation.key.toLowerCase()] }}:
+						</p>
+						{{ translation.value }}
+					</span>
 
-          <button mat-icon-button>
-            <mat-icon
-              matListIcon
-              class="clipboard-copy"
-              matTooltip="Copy translation"
-              [cdkCopyToClipboard]="translation.value"
-              (click)="openSnackBar(translation.key)"
-              >content_copy</mat-icon
-            >
-          </button>
-        </mat-list-item>
-      </mat-list>
-    </div>
-  </mat-card>
+					<button mat-icon-button>
+						<mat-icon
+							matListIcon
+							class="clipboard-copy"
+							matTooltip="Copy translation"
+							[cdkCopyToClipboard]="translation.value"
+							(click)="openSnackBar(translation.key)"
+							>content_copy</mat-icon
+						>
+					</button>
+				</mat-list-item>
+			</mat-list>
+		</div>
+	</mat-card>
 </div>
 
 <!-- TODO show in raw data and copy - copy_all-->

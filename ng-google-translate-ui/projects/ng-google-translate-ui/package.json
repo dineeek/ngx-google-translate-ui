@@ -1,6 +1,6 @@
 {
 	"name": "ng-google-translate-ui",
-	"version": "0.0.32",
+	"version": "0.0.36",
 	"peerDependencies": {
 		"@angular/common": "^11.1.2",
 		"@angular/core": "^11.1.2"

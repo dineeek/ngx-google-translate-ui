@@ -25,9 +25,9 @@ export class NgGoogleTranslateUiComponent {
 		targetLangs: new FormControl([], Validators.required)
 	});
 
-	/* 	originalOrder = (): number => {
+	originalOrder = (): number => {
 		return 0;
-	}; */
+	};
 
 	constructor(
 		private googleService: GoogleTranslationService,
@@ -63,6 +63,7 @@ export class NgGoogleTranslateUiComponent {
 	onReset(): void {
 		this.multiTranslateForm.get('sourceText')?.setValue('');
 		this.multiTranslateForm.get('targetLangs')?.setValue([]);
+		this.translations = {};
 	}
 
 	/**

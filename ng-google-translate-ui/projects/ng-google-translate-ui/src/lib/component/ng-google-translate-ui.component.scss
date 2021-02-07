@@ -39,22 +39,18 @@
 		}
 	}
 
-	.resultContent {
-		padding: 0 20px;
+	.span-padding {
+		padding-bottom: 10px !important;
+	}
 
-		.no-title {
-			display: none;
-		}
+	.paragraph-text {
+		letter-spacing: 0.25px !important;
+		font-weight: 500 !important;
+	}
 
-		.lang-desc {
-			letter-spacing: 0.25px;
-			font-weight: 500;
-		}
-
-		.clipboard-copy {
-			cursor: pointer;
-			color: lightslategray;
-		}
+	.clipboard-copy {
+		cursor: pointer;
+		color: lightslategray;
 	}
 
 	.mat-list-base {
@@ -69,8 +65,8 @@
 	.mat-list-base .mat-list-option.mat-list-item-with-avatar {
 		height: fit-content !important;
 	}
+}
 
-	.tooltip-inner {
-		white-space: pre-line;
-	}
+.tooltip-inner {
+	white-space: pre-line !important;
 }

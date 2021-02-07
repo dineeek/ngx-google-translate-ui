@@ -49,7 +49,7 @@
         </div>
       </div>
     </mat-card-content>
-    <mat-card-actions align="end">
+    <mat-card-actions align="end" class="buttons">
       <button
         mat-raised-button
         color="primary"
@@ -63,31 +63,30 @@
         Reset
       </button>
     </mat-card-actions>
+
+    <div [hidden]="!translations">
+      <mat-list
+        *ngFor="let translation of translations | keyvalue"
+        class="results"
+      >
+        <mat-list-item>
+          <p>
+            <b> {{ translation.key }}: </b> {{ translation.value }}
+          </p>
+
+          <button mat-icon-button>
+            <mat-icon
+              matListIcon
+              class="clipboard-copy"
+              [cdkCopyToClipboard]="translation.value"
+              (click)="openSnackBar(translation.key)"
+              >content_copy</mat-icon
+            >
+          </button>
+        </mat-list-item>
+      </mat-list>
+    </div>
   </mat-card>
-
-  <div [class.resultContent]="translations" [hidden]="!translations">
-    <h3 [class.title]="!translations">Translations</h3>
-    <mat-list
-      *ngFor="let translation of translations | keyvalue"
-      class="results"
-    >
-      <mat-list-item class="list-items">
-        <p>
-          <b> {{ translation.key }}: </b> {{ translation.value }}
-        </p>
-
-        <button mat-icon-button>
-          <mat-icon
-            matListIcon
-            class="clipboard-copy"
-            [cdkCopyToClipboard]="translation.value"
-            (click)="openSnackBar(translation.key)"
-            >content_copy</mat-icon
-          >
-        </button>
-      </mat-list-item>
-    </mat-list>
-  </div>
 </div>
 
 <!-- TODO show in raw data and copy - copy_all-->

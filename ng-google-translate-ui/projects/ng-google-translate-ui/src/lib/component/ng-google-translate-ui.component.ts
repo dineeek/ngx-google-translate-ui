@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { GoogleTranslationBodyModel } from '../models/google-translation.model';
@@ -6,11 +6,12 @@ import { GoogleTranslationService } from '../util/google-translation.service';
 import { LANGS } from '../util/languages';
 import { CloudCredentialsMessage } from '../util/tooltips-messages';
 
-// TODO - sort langs
+// TODO - sort langs, validators message, transform lang code to desc,
 @Component({
   selector: 'lib-ng-google-translate-ui',
   templateUrl: './ng-google-translate-ui.component.html',
   styleUrls: ['./ng-google-translate-ui.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class NgGoogleTranslateUiComponent {
   languages = LANGS;

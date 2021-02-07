@@ -44,7 +44,7 @@
 
 					<mat-form-field appearance="fill" class="full-width padding">
 						<mat-label>To</mat-label>
-						<mat-select formControlName="targetLangs" multiple>
+						<mat-select formControlName="targetLangs" ngDefaultControl multiple>
 							<mat-option
 								*ngFor="let lang of languages | keyvalue: originalOrder"
 								[value]="lang.key"

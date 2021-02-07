@@ -6,6 +6,7 @@
 		"publish": "cd dist/ng-google-translate-ui && npm publish",
 		"test": "ng test",
 		"lint": "ng lint",
+		"build-ci": "ng build ng-google-translate-ui --prod",
 		"test-ci": "ng test ng-google-translate-ui --watch=false --browsers=ChromeHeadless"
 	},
 	"private": true,

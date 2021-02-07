@@ -34,14 +34,27 @@
   .resultContent {
     padding: 20px;
 
+    .title {
+      display: none;
+    }
+
     .results {
-      max-width: 50%;
+      max-width: 56%;
       word-break: break-all;
       border-bottom: 1px solid;
+
+      .list-items {
+        justify-content: space-between;
+      }
+    }
+
+    .clipboard-copy {
+      cursor: pointer;
+      color: lightsteelblue;
     }
   }
 }
 
-/* .mat-list-base .mat-list-item .mat-list-text {
+.mat-list-base .mat-list-item .mat-list-text {
   padding: 0 !important;
-} */
+}

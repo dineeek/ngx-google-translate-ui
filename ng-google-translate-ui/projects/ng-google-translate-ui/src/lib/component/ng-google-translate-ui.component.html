@@ -65,23 +65,26 @@
     </mat-card-actions>
   </mat-card>
 
-  <!-- TODO  snack bar content copied!-->
   <div [class.resultContent]="translations" [hidden]="!translations">
-    <div matSubheader>Translations</div>
+    <h3 [class.title]="!translations">Translations</h3>
     <mat-list
       *ngFor="let translation of translations | keyvalue"
       class="results"
     >
-      <mat-list-item>
-        <mat-icon
-          matListIcon
-          cdkCopyToClipboard="translation.value"
-          (click)="openSnackBar(translation.key)"
-          >content_copy</mat-icon
-        >
+      <mat-list-item class="list-items">
         <p>
           <b> {{ translation.key }}: </b> {{ translation.value }}
         </p>
+
+        <button mat-icon-button>
+          <mat-icon
+            matListIcon
+            class="clipboard-copy"
+            [cdkCopyToClipboard]="translation.value"
+            (click)="openSnackBar(translation.key)"
+            >content_copy</mat-icon
+          >
+        </button>
       </mat-list-item>
     </mat-list>
   </div>

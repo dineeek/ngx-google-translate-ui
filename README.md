@@ -1,6 +1,6 @@
 # ng-google-translate-ui
 
-An Angular UI for Google Translate（based on Cloud Translation API).
+An Angular Material UI for Google Translate（based on Cloud Translation API).
 
 # Feature
 
@@ -24,6 +24,21 @@ Process of translation is analog as in the real Google translator.
 ![Translator UI](https://github.com/dineeek/ng-google-translate-ui/blob/dev/ui.png?raw=true)
 
 The output of translation can be separately copied to clipboard to manipulate or it can be coped as raw JSON data.
+
+Also, this library can be used in your project as MatDialog.
+
+```typescript
+import {NgGoogleTranslateUiComponent} from 'ng-google-translate-ui';
+
+...
+
+openDialog() {
+    const dialogRef = this.dialog.open(NgGoogleTranslateUiComponent);
+}
+
+
+...
+```
 
 # License
 

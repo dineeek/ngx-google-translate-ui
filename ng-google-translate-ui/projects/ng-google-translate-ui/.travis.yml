@@ -7,3 +7,4 @@ node_js:
 script:
   - npm run test-ci
   - npm run build-ci
+workingDirectory: '$(Build.SourcesDirectory)/ng-google-translate-ui'

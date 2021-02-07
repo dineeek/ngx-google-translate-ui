@@ -1,11 +1,10 @@
 language: node_js
 node_js:
-  - '9'
+  - '12'
 dist: trusty
 sudo: required
 before_script:
   - npm install -g @angular/cli
 script:
-  - ng lint
-  - ng build --prod --base-href https://github.com/dineeek/ng-google-translate-ui
-  - ng test ng-google-translate-ui --watch=false --browsers=ChromeHeadless
+  - npm run test-ci
+  - npm run build-ci

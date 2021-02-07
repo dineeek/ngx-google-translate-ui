@@ -1,0 +1,15 @@
+.content {
+  margin: 20px;
+
+  .fields {
+    display: grid;
+
+    .full-size {
+      grid-column: 1 / span 2;
+    }
+
+    .full-width {
+      width: 100%;
+    }
+  }
+}

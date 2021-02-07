@@ -39,7 +39,7 @@ openDialog() {
 There is also exported service for fetching translation using POST method.
 
 ```typescript
-import {NgGoogleTranslateUiComponent} from 'ng-google-translate-ui';
+import { GoogleTranslationService } from 'ng-google-translate-ui';
 ...
 constructor(private googleService: GoogleTranslationService){
 

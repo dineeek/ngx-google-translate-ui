@@ -1,24 +1,47 @@
-# NgGoogleTranslateUi
+# ng-google-translate-ui
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.2.
+An Angular Material UI for Google Translate（based on Cloud Translation API).
 
-## Code scaffolding
+# Feature
 
-Run `ng generate component component-name --project ng-google-translate-ui` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ng-google-translate-ui`.
-> Note: Don't forget to add `--project ng-google-translate-ui` or else it will be added to the default project in your `angular.json` file. 
+- Text translation
+- Auto language detection
+- Multiple language translation
+- Fast and reliable – it uses the same servers that [translate.google.com](https://translate.google.com/) uses
 
-## Build
+# Install
 
-Run `ng build ng-google-translate-ui` to build the project. The build artifacts will be stored in the `dist/` directory.
+```shell
+npm install --save ng-google-translate-ui
+```
 
-## Publishing
+# Usage
 
-After building your library with `ng build ng-google-translate-ui`, go to the dist folder `cd dist/ng-google-translate-ui` and run `npm publish`.
+To use this library you need to provide Google API key.
 
-## Running unit tests
+Process of translation is analog as in the real Google translator.
 
-Run `ng test ng-google-translate-ui` to execute the unit tests via [Karma](https://karma-runner.github.io).
+![Translator UI](https://github.com/dineeek/ng-google-translate-ui/blob/dev/ui.png?raw=true)
 
-## Further help
+The output of translation can be separately copied to clipboard to manipulate or it can be coped as raw JSON data.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Also, this library can be used in your project as MatDialog.
+
+```typescript
+import {NgGoogleTranslateUiComponent} from 'ng-google-translate-ui';
+
+...
+
+openDialog() {
+    const dialogRef = this.dialog.open(NgGoogleTranslateUiComponent);
+}
+
+
+...
+```
+
+# License
+
+MIT License
+
+Copyright (c) 2021 Dino Klicek

@@ -1,27 +1,47 @@
-# NgGoogleTranslateUi
+# ng-google-translate-ui
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.4.
+An Angular Material UI for Google Translate（based on Cloud Translation API).
 
-## Development server
+# Feature
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- Text translation
+- Auto language detection
+- Multiple language translation
+- Fast and reliable – it uses the same servers that [translate.google.com](https://translate.google.com/) uses
 
-## Code scaffolding
+# Install
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```shell
+npm install --save ng-google-translate-ui
+```
 
-## Build
+# Usage
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+To use this library you need to provide Google API key.
 
-## Running unit tests
+Process of translation is analog as in the real Google translator.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+![Translator UI](https://github.com/dineeek/ng-google-translate-ui/blob/dev/ui.png?raw=true)
 
-## Running end-to-end tests
+The output of translation can be separately copied to clipboard to manipulate or it can be coped as raw JSON data.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Also, this library can be used in your project as MatDialog.
 
-## Further help
+```typescript
+import {NgGoogleTranslateUiComponent} from 'ng-google-translate-ui';
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+...
+
+openDialog() {
+    const dialogRef = this.dialog.open(NgGoogleTranslateUiComponent);
+}
+
+
+...
+```
+
+# License
+
+MIT License
+
+Copyright (c) 2021 Dino Klicek

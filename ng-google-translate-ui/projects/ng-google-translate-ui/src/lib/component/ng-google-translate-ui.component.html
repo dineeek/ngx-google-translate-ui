@@ -83,9 +83,9 @@
       <mat-list *ngFor="let translation of translations | keyvalue">
         <mat-list-item>
           <p>
-            <b class="spacing">
+            <p class="lang-desc">
               {{ languages[translation.key.toLowerCase()] }}:
-            </b>
+            </p>
             {{ translation.value }}
           </p>
 

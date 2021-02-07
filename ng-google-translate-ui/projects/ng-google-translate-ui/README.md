@@ -25,18 +25,32 @@ Process of translation is analog as in the real Google translator.
 
 The output of translation can be separately copied to clipboard to manipulate or it can be coped as raw JSON data.
 
-Also, this library can be used in your project as MatDialog.
+This library can be used in your project as MatDialog.
 
 ```typescript
 import {NgGoogleTranslateUiComponent} from 'ng-google-translate-ui';
-
 ...
-
 openDialog() {
     const dialogRef = this.dialog.open(NgGoogleTranslateUiComponent);
 }
+...
+```
 
+There is also exported service for fetching translation using POST method.
 
+```typescript
+import {NgGoogleTranslateUiComponent} from 'ng-google-translate-ui';
+...
+constructor(private googleService: GoogleTranslationService){
+
+}
+
+const body: GoogleTranslationBodyModel {
+    q: 'Vehicle',
+    target: 'de'
+}
+
+this.googleService.getTranslations('your_api_key', body); // returns Observable of GoogleTranslation (translatedText and detectedSourceLanguage)
 ...
 ```
 

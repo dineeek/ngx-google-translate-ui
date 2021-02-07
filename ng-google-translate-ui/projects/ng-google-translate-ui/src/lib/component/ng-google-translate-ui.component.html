@@ -80,13 +80,12 @@
     </mat-card-actions>
 
     <div [hidden]="!translations">
-      <mat-list
-        *ngFor="let translation of translations | keyvalue"
-        class="results"
-      >
+      <mat-list *ngFor="let translation of translations | keyvalue">
         <mat-list-item>
           <p>
-            <b> {{ languages[translation.key.toLowerCase()] }}: </b>
+            <b class="spacing">
+              {{ languages[translation.key.toLowerCase()] }}:
+            </b>
             {{ translation.value }}
           </p>
 

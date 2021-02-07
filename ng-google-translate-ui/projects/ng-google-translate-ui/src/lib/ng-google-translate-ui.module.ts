@@ -13,23 +13,25 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 
 import { NgGoogleTranslateUiComponent } from './component/ng-google-translate-ui.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
-  declarations: [NgGoogleTranslateUiComponent],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatSelectModule,
-    MatListModule,
-    MatDividerModule,
-    MatButtonModule,
-    MatCardModule,
-    MatTooltipModule,
-    MatIconModule,
-    MatSnackBarModule,
-    ClipboardModule,
-  ],
-  exports: [NgGoogleTranslateUiComponent],
+	declarations: [NgGoogleTranslateUiComponent],
+	imports: [
+		CommonModule,
+		BrowserModule,
+		ReactiveFormsModule,
+		MatInputModule,
+		MatSelectModule,
+		MatListModule,
+		MatDividerModule,
+		MatButtonModule,
+		MatCardModule,
+		MatTooltipModule,
+		MatIconModule,
+		MatSnackBarModule,
+		ClipboardModule
+	],
+	exports: [NgGoogleTranslateUiComponent]
 })
 export class NgGoogleTranslateUiModule {}

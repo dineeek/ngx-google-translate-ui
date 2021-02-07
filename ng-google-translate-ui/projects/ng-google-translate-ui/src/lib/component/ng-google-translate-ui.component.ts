@@ -18,6 +18,7 @@ export class NgGoogleTranslateUiComponent {
 	languages = LANGS;
 	cloudCredentialsTooltip = CloudCredentialsMessage;
 	translations: { [key: string]: string } = {};
+	emptyTranslations = true;
 
 	multiTranslateForm = new FormGroup({
 		apiKey: new FormControl('', Validators.required),
@@ -55,6 +56,8 @@ export class NgGoogleTranslateUiComponent {
 				this.translations[targetLang.toUpperCase()] =
 					translation.translatedText;
 			});
+
+		this.emptyTranslations = false;
 	}
 
 	/**
@@ -64,6 +67,7 @@ export class NgGoogleTranslateUiComponent {
 		this.multiTranslateForm.get('sourceText')?.setValue('');
 		this.multiTranslateForm.get('targetLangs')?.setValue([]);
 		this.translations = {};
+		this.emptyTranslations = true;
 	}
 
 	/**
@@ -79,9 +83,20 @@ export class NgGoogleTranslateUiComponent {
 	 * @param  lang - Language code.
 	 * @returns void - Shows the message to the user.
 	 */
-	openSnackBar(lang: string): void {
-		this.snackBar.open(`Copied translation for ${lang} language!`, 'X', {
-			duration: 5000
-		});
+	openSnackBar(lang?: string): void {
+		lang
+			? this.snackBar.open(`Copied translation for ${lang} language!`, 'X', {
+					duration: 5000
+			  })
+			: this.snackBar.open(`Copied translation for all languages!`, 'X', {
+					duration: 5000
+			  });
+	}
+
+	/**
+	 * @returns string - JSON stringified fetched translations.
+	 */
+	onCopyAll(): string {
+		return JSON.stringify(this.translations);
 	}
 }

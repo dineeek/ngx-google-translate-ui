@@ -79,7 +79,7 @@
 			</button>
 		</mat-card-actions>
 
-		<div [hidden]="!translations">
+		<div *ngIf="!emptyTranslations">
 			<mat-list *ngFor="let translation of translations | keyvalue">
 				<mat-list-item>
 					<span class="span-padding">
@@ -101,8 +101,18 @@
 					</button>
 				</mat-list-item>
 			</mat-list>
+
+			<div class="copy-all">
+				<button
+					mat-icon-button
+					color="primary"
+					[cdkCopyToClipboard]="onCopyAll()"
+					(click)="openSnackBar(null)"
+					matTooltip="Copy all translated data"
+				>
+					<mat-icon>copy_all</mat-icon>
+				</button>
+			</div>
 		</div>
 	</mat-card>
 </div>
-
-<!-- TODO show in raw data and copy - copy_all-->

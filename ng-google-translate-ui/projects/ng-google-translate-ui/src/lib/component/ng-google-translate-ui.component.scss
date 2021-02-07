@@ -1,15 +1,47 @@
-.content {
-  margin: 20px;
+.translator-container {
+  padding: 20px;
 
-  .fields {
-    display: grid;
+  .card {
+    max-width: 600px;
 
-    .full-size {
-      grid-column: 1 / span 2;
+    .content {
+      padding: 0 20px;
+
+      .fields {
+        .custom-width {
+          width: 60%;
+        }
+
+        .cloud-credentials {
+          cursor: pointer;
+          color: green;
+        }
+
+        .full-width {
+          width: 100%;
+        }
+
+        .textarea {
+          width: 100%;
+          height: 60px;
+          resize: none;
+          vertical-align: top;
+        }
+      }
     }
+  }
 
-    .full-width {
-      width: 100%;
+  .resultContent {
+    padding: 20px;
+
+    .results {
+      max-width: 50%;
+      word-break: break-all;
+      border-bottom: 1px solid;
     }
   }
 }
+
+/* .mat-list-base .mat-list-item .mat-list-text {
+  padding: 0 !important;
+} */

@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { GoogleTranslationBodyModel } from '../models/google-translation-body.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { GoogleTranslationBodyModel } from '../models/google-translation.model';
 import { GoogleTranslationService } from '../util/google-translation.service';
 import { LANGS } from '../util/languages';
+import { CloudCredentialsMessage } from '../util/tooltips-messages';
 
 @Component({
   selector: 'lib-ng-google-translate-ui',
@@ -12,6 +14,8 @@ import { LANGS } from '../util/languages';
 export class NgGoogleTranslateUiComponent {
   languages = LANGS;
 
+  cloudCredentialsTooltip = CloudCredentialsMessage;
+
   translations: { [key: string]: string } = {};
 
   multiTranslateForm = new FormGroup({
@@ -20,7 +24,10 @@ export class NgGoogleTranslateUiComponent {
     targetLangs: new FormControl([], Validators.required),
   });
 
-  constructor(private googleService: GoogleTranslationService) {}
+  constructor(
+    private googleService: GoogleTranslationService,
+    private snackBar: MatSnackBar
+  ) {}
 
   onSearch(): void {
     this.translations = {};
@@ -40,5 +47,21 @@ export class NgGoogleTranslateUiComponent {
         this.translations[targetLang.toUpperCase()] =
           translation.translatedText;
       });
+  }
+
+  onReset(): void {
+    this.multiTranslateForm.get('sourceText')?.setValue('');
+    this.multiTranslateForm.get('targetLangs')?.setValue([]);
+  }
+
+  onCloudCredentialsHelpClick(e: Event): void {
+    e.stopPropagation();
+    window.open('https://console.cloud.google.com/', 'parent');
+  }
+
+  openSnackBar(lang: string): void {
+    this.snackBar.open(`Copied translation for ${lang} language!`, 'X', {
+      duration: 4000,
+    });
   }
 }

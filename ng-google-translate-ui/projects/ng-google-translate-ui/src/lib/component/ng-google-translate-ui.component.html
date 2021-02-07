@@ -1,53 +1,90 @@
-<div [formGroup]="multiTranslateForm" class="content">
-  <h2>Translator</h2>
-  <div class="fields">
-    <div>
-      <mat-form-field class="full-width">
-        <mat-label>GOOGLE API KEY</mat-label>
-        <input matInput formControlName="apiKey" placeholder="Google API key" />
-      </mat-form-field>
-    </div>
+<div class="translator-container">
+  <mat-card class="card">
+    <mat-card-header>
+      <mat-card-title>Translator</mat-card-title>
+      <mat-card-subtitle>Cloud Translation API</mat-card-subtitle>
+    </mat-card-header>
+    <!--TODO tooltips-->
+    <mat-card-content>
+      <div [formGroup]="multiTranslateForm" class="content">
+        <div class="fields">
+          <mat-form-field class="custom-width">
+            <mat-label>Google API key</mat-label>
+            <input
+              matInput
+              formControlName="apiKey"
+              placeholder="Google API key"
+            />
+            <mat-icon
+              matSuffix
+              class="cloud-credentials"
+              (click)="onCloudCredentialsHelpClick($event)"
+              [matTooltip]="cloudCredentialsTooltip"
+              matTooltipPosition="below"
+            >
+              help_outline
+            </mat-icon>
+          </mat-form-field>
 
-    <div class="full-size">
-      <mat-form-field class="full-width">
-        <mat-label>Insert text</mat-label>
-        <input
-          matInput
-          formControlName="sourceText"
-          placeholder="Text to translate"
-        />
-      </mat-form-field>
-    </div>
+          <mat-form-field class="full-width">
+            <mat-label>Insert text</mat-label>
+            <textarea
+              matInput
+              class="textarea"
+              formControlName="sourceText"
+              placeholder="Text to translate"
+            ></textarea>
+          </mat-form-field>
 
-    <div class="full-size">
-      <mat-form-field appearance="fill" class="full-width">
-        <mat-label>To</mat-label>
-        <mat-select formControlName="targetLangs" multiple>
-          <mat-option
-            *ngFor="let lang of languages | keyvalue"
-            [value]="lang.key"
-            >{{ lang.value }}</mat-option
-          >
-        </mat-select>
-      </mat-form-field>
-    </div>
-  </div>
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>To</mat-label>
+            <mat-select formControlName="targetLangs" multiple>
+              <mat-option
+                *ngFor="let lang of languages | keyvalue"
+                [value]="lang.key"
+                >{{ lang.value }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="onSearch()"
+        [disabled]="!multiTranslateForm.valid"
+      >
+        Translate
+      </button>
 
-  <button
-    mat-raised-button
-    color="primary"
-    (click)="onSearch()"
-    [disabled]="!multiTranslateForm.valid"
-  >
-    Translate
-  </button>
+      <button mat-raised-button color="primary" (click)="onReset()">
+        Reset
+      </button>
+    </mat-card-actions>
+  </mat-card>
 
-  <!-- TODO: padding, border-bottom: 1px solid add copy icon and logic-->
-  <div class="results" [hidden]="!translations">
-    <mat-list *ngFor="let translation of translations | keyvalue">
+  <!-- TODO  snack bar content copied!-->
+  <div [class.resultContent]="translations" [hidden]="!translations">
+    <div matSubheader>Translations</div>
+    <mat-list
+      *ngFor="let translation of translations | keyvalue"
+      class="results"
+    >
       <mat-list-item>
-        {{ translation.key }}: {{ translation.value }}
+        <mat-icon
+          matListIcon
+          cdkCopyToClipboard="translation.value"
+          (click)="openSnackBar(translation.key)"
+          >content_copy</mat-icon
+        >
+        <p>
+          <b> {{ translation.key }}: </b> {{ translation.value }}
+        </p>
       </mat-list-item>
     </mat-list>
   </div>
 </div>
+
+<!-- TODO show in raw data and copy - copy_all-->

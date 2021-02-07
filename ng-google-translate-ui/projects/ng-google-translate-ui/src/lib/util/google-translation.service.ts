@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import {
   GoogleTranslation,
   GoogleTranslationBodyModel,
-} from '../models/google-translation-body.model';
+} from '../models/google-translation.model';
 import { Observable } from 'rxjs';
 
 import { map } from 'rxjs/operators';

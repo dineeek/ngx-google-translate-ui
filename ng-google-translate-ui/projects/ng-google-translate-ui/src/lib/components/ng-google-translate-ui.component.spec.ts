@@ -1,10 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NgGoogleTranslateUiComponent } from './ng-google-translate-ui.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { MatSelectModule } from '@angular/material/select';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { NgGoogleTranslateUiComponent } from './ng-google-translate-ui.component';
 
 describe('NgGoogleTranslateUiComponent', () => {
 	let component: NgGoogleTranslateUiComponent;

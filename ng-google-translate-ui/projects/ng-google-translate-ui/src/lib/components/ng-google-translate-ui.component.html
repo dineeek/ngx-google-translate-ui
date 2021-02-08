@@ -44,7 +44,10 @@
 						>
 					</mat-form-field>
 
-					<mat-form-field appearance="fill" class="full-width padding">
+					<mat-form-field
+						appearance="fill"
+						[ngClass]="{ 'full-width': true, padding: dialogData?.apiKey }"
+					>
 						<mat-label>To</mat-label>
 						<mat-select formControlName="targetLangs" ngDefaultControl multiple>
 							<mat-option

@@ -1,9 +1,7 @@
 <mat-list *ngFor="let translation of translations | keyvalue">
 	<mat-list-item>
 		<span class="span-padding">
-			<p class="paragraph-text">
-				{{ languages[translation.key.toLowerCase()] }}:
-			</p>
+			<p class="paragraph-text">{{ languages[translation.key] }}:</p>
 			{{ translation.value }}
 		</span>
 

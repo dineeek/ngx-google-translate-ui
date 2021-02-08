@@ -74,7 +74,7 @@ export class NgGoogleTranslateUiComponent implements OnInit {
 					.getTranslations(this.multiTranslateForm.get('apiKey')?.value, body)
 					.toPromise();
 
-				this.translations[targetLang.toUpperCase()] =
+				this.translations[targetLang.toLowerCase()] =
 					translation.translatedText;
 
 				this.areTranslationsEmpty = false;

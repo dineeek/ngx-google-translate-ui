@@ -1,6 +1,6 @@
 {
 	"name": "ngx-google-translate-ui",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"scripts": {
 		"build": "ng build --project ngx-google-translate-ui --prod",
 		"publish": "cd dist/ngx-google-translate-ui && npm publish",

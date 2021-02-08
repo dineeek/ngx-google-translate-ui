@@ -1,6 +1,5 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { LANGS } from '../../util/languages';
 
 @Component({
 	selector: 'lib-google-translation-results',
@@ -11,7 +10,6 @@ import { LANGS } from '../../util/languages';
 export class TranslationResultsComponent {
 	@Input()
 	translations: { [key: string]: string } = {};
-	languages = LANGS;
 
 	constructor(private snackBar: MatSnackBar) {}
 

@@ -22,16 +22,29 @@ import { CloudCredentialsMessage } from '../util/tooltips-messages';
 	encapsulation: ViewEncapsulation.None
 })
 export class NgGoogleTranslateUiComponent implements OnInit {
-	languages = LANGS;
+	readonly languages = LANGS;
 	cloudCredentialsTooltip = CloudCredentialsMessage;
+
 	translations: { [key: string]: string } = {};
-	areTranslationsEmpty = true;
+	emptyTranslationsFlag = true; // delete and look at translations
 
 	multiTranslateForm = new FormGroup({
 		apiKey: new FormControl('', Validators.required),
-		sourceText: new FormControl('', Validators.required),
+		translationText: new FormControl('', Validators.required),
 		targetLangs: new FormControl([], Validators.required)
 	});
+
+	get apiKey() {
+		return this.multiTranslateForm.get('apiKey');
+	}
+
+	get translationText() {
+		return this.multiTranslateForm.get('translationText');
+	}
+
+	get targetLangs() {
+		return this.multiTranslateForm.get('targetLangs');
+	}
 
 	originalOrder = (): number => {
 		return 0;
@@ -46,13 +59,11 @@ export class NgGoogleTranslateUiComponent implements OnInit {
 
 	ngOnInit(): void {
 		if (this.dialogData) {
-			this.multiTranslateForm.get('apiKey')?.setValue(this.dialogData.apiKey);
+			this.apiKey?.setValue(this.dialogData.apiKey);
 
 			this.dialogData.translationText
-				? this.multiTranslateForm
-						.get('sourceText')
-						?.setValue(this.dialogData.translationText)
-				: this.multiTranslateForm.get('sourceText')?.setValue('');
+				? this.translationText?.setValue(this.dialogData.translationText)
+				: this.translationText?.setValue('');
 		}
 	}
 
@@ -62,33 +73,32 @@ export class NgGoogleTranslateUiComponent implements OnInit {
 	onSearch(): void {
 		this.translations = {};
 
-		this.multiTranslateForm
-			.get('targetLangs')
-			?.value.forEach(async (targetLang: string) => {
-				const body: GoogleTranslationBodyModel = {
-					q: this.multiTranslateForm.get('sourceText')?.value,
-					target: targetLang
-				};
+		this.targetLangs?.value.forEach(async (targetLang: string) => {
+			const body: GoogleTranslationBodyModel = {
+				q: this.translationText?.value,
+				target: targetLang
+			};
 
-				const translation = await this.googleService
-					.getTranslations(this.multiTranslateForm.get('apiKey')?.value, body)
-					.toPromise();
+			const translation = await this.googleService
+				.getTranslations(this.apiKey?.value, body)
+				.toPromise();
 
-				this.translations[targetLang.toLowerCase()] =
-					translation.translatedText;
+			this.translations[LANGS[targetLang.toLowerCase()]] =
+				translation.translatedText;
 
-				this.areTranslationsEmpty = false;
-			});
+			this.emptyTranslationsFlag = false;
+		});
 	}
 
 	/**
 	 * @returns void - Resets the input value in textarea and selected target languages.
 	 */
 	onReset(): void {
-		this.multiTranslateForm.get('sourceText')?.setValue('');
-		this.multiTranslateForm.get('targetLangs')?.setValue([]);
+		this.translationText?.reset('');
+		this.targetLangs?.reset([]);
+
 		this.translations = {};
-		this.areTranslationsEmpty = true;
+		this.emptyTranslationsFlag = true;
 	}
 
 	/**

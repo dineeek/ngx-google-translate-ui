@@ -25,7 +25,7 @@
 							>
 								help_outline
 							</mat-icon>
-							<mat-error *ngIf="multiTranslateForm.get('apiKey').invalid"
+							<mat-error *ngIf="apiKey.invalid"
 								>Required to fetch translations!</mat-error
 							>
 						</mat-form-field>
@@ -39,10 +39,10 @@
 						<textarea
 							matInput
 							class="textarea"
-							formControlName="sourceText"
+							formControlName="translationText"
 							placeholder="Text to translate"
 						></textarea>
-						<mat-error *ngIf="multiTranslateForm.get('sourceText').invalid"
+						<mat-error *ngIf="translationText.invalid"
 							>Insert text to translate!</mat-error
 						>
 					</mat-form-field>
@@ -56,7 +56,7 @@
 								>{{ lang.value }}</mat-option
 							>
 						</mat-select>
-						<mat-error *ngIf="multiTranslateForm.get('targetLangs').invalid"
+						<mat-error *ngIf="targetLangs.invalid"
 							>Choose at least one target language!</mat-error
 						>
 					</mat-form-field>
@@ -85,7 +85,7 @@
 		</mat-card-actions>
 
 		<lib-google-translation-results
-			*ngIf="!areTranslationsEmpty"
+			*ngIf="!emptyTranslationsFlag"
 			[translations]="translations"
 		></lib-google-translation-results>
 	</mat-card>

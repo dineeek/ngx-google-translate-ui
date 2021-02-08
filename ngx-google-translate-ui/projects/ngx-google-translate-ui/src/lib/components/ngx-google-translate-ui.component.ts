@@ -13,7 +13,7 @@ import { GoogleTranslationService } from '../util/google-translation.service';
 import { LANGS } from '../util/languages';
 import { CloudCredentialsMessage } from '../util/tooltips-messages';
 
-// TODO readme, tests
+// TODO tests
 
 @Component({
 	selector: 'lib-ngx-google-translate-ui',

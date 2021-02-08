@@ -12,6 +12,7 @@
 						<mat-form-field class="custom-width">
 							<mat-label>Google API key</mat-label>
 							<input
+								id="apiKey"
 								matInput
 								formControlName="apiKey"
 								placeholder="Google API key"
@@ -37,6 +38,7 @@
 					>
 						<mat-label>Insert text</mat-label>
 						<textarea
+							id="transText"
 							matInput
 							class="textarea"
 							formControlName="translationText"
@@ -49,7 +51,12 @@
 
 					<mat-form-field appearance="fill" y class="full-width padding">
 						<mat-label>To</mat-label>
-						<mat-select formControlName="targetLangs" ngDefaultControl multiple>
+						<mat-select
+							id="dropdown"
+							formControlName="targetLangs"
+							ngDefaultControl
+							multiple
+						>
 							<mat-option
 								*ngFor="let lang of languages | keyvalue: originalOrder"
 								[value]="lang.key"
@@ -75,6 +82,7 @@
 			</button>
 
 			<button
+				id="reset"
 				mat-raised-button
 				color="primary"
 				(click)="onReset()"

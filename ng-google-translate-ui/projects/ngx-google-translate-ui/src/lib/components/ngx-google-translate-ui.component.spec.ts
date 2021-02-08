@@ -3,22 +3,22 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-import { NgGoogleTranslateUiComponent } from './ng-google-translate-ui.component';
+import { NgxGoogleTranslateUiComponent } from './ngx-google-translate-ui.component';
 
-describe('NgGoogleTranslateUiComponent', () => {
-	let component: NgGoogleTranslateUiComponent;
-	let fixture: ComponentFixture<NgGoogleTranslateUiComponent>;
+describe('NgxGoogleTranslateUiComponent', () => {
+	let component: NgxGoogleTranslateUiComponent;
+	let fixture: ComponentFixture<NgxGoogleTranslateUiComponent>;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			declarations: [NgGoogleTranslateUiComponent],
+			declarations: [NgxGoogleTranslateUiComponent],
 			imports: [HttpClientTestingModule, MatIconModule, ReactiveFormsModule],
 			schemas: [CUSTOM_ELEMENTS_SCHEMA]
 		}).compileComponents();
 	});
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(NgGoogleTranslateUiComponent);
+		fixture = TestBed.createComponent(NgxGoogleTranslateUiComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});

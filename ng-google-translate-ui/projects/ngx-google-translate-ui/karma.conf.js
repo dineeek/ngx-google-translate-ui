@@ -34,7 +34,7 @@ module.exports = function (config) {
 		coverageReporter: {
 			dir: require('path').join(
 				__dirname,
-				'../../coverage/ng-google-translate-ui'
+				'../../coverage/ngx-google-translate-ui'
 			),
 			subdir: '.',
 			reporters: [{ type: 'html' }, { type: 'text-summary' }]

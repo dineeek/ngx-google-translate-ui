@@ -16,12 +16,12 @@ import { CloudCredentialsMessage } from '../util/tooltips-messages';
 // TODO readme, tests
 
 @Component({
-	selector: 'lib-ng-google-translate-ui',
-	templateUrl: './ng-google-translate-ui.component.html',
-	styleUrls: ['./ng-google-translate-ui.component.scss'],
+	selector: 'lib-ngx-google-translate-ui',
+	templateUrl: './ngx-google-translate-ui.component.html',
+	styleUrls: ['./ngx-google-translate-ui.component.scss'],
 	encapsulation: ViewEncapsulation.None
 })
-export class NgGoogleTranslateUiComponent implements OnInit {
+export class NgxGoogleTranslateUiComponent implements OnInit {
 	readonly languages = LANGS;
 	cloudCredentialsTooltip = CloudCredentialsMessage;
 

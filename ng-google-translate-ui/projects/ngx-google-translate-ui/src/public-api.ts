@@ -1,9 +1,9 @@
 /*
- * Public API Surface of ng-google-translate-ui
+ * Public API Surface of ngx-google-translate-ui
  */
 
-export { NgGoogleTranslateUiComponent } from './lib/components/ng-google-translate-ui.component';
-export { NgGoogleTranslateUiModule } from './lib/ng-google-translate-ui.module';
+export { NgxGoogleTranslateUiComponent } from './lib/components/ngx-google-translate-ui.component';
+export { NgxGoogleTranslateUiModule } from './lib/ngx-google-translate-ui.module';
 
 export {
 	GoogleTranslation,

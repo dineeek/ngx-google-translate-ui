@@ -5,7 +5,7 @@ language: node_js
 node_js:
   - node
 script:
-  - cd ng-google-translate-ui
+  - cd ngx-google-translate-ui
   - npm install
   - npm run test-ci
   - npm run build-ci

@@ -1,9 +1,9 @@
-# ng-google-translate-ui
+# ngx-google-translate-ui
 
 An Angular Material UI for Google Translate（based on Cloud Translation API).
 
 <p align="start">
-    <a href="https://travis-ci.com/dineeek/ng-google-translate-ui"><img src="https://travis-ci.com/dineeek/ng-google-translate-ui.svg?token=YSspYgvLPX2y3Q9zRFxp&branch=main" /></a>
+    <a href="https://travis-ci.com/dineeek/ngx-google-translate-ui"><img src="https://travis-ci.com/dineeek/ngx-google-translate-ui.svg?token=YSspYgvLPX2y3Q9zRFxp&branch=main" /></a>
 </p>
 
 # Feature
@@ -16,7 +16,7 @@ An Angular Material UI for Google Translate（based on Cloud Translation API).
 # Install
 
 ```shell
-npm install --save ng-google-translate-ui
+npm install --save ngx-google-translate-ui
 ```
 
 # Usage
@@ -25,7 +25,7 @@ To use this library you need to provide Google API key.
 
 Process of translation is analog as in the real Google translator.
 
-![Translator UI](https://github.com/dineeek/ng-google-translate-ui/blob/main/ui.png?raw=true)
+![Translator UI](https://github.com/dineeek/ngx-google-translate-ui/blob/main/ui.png?raw=true)
 
 The output of translation can be separately copied to clipboard to manipulate or it can be coped as raw JSON data.
 
@@ -35,7 +35,7 @@ In that way the input field for a API key won't be visible and it will be rememb
 Without providing dialog configuration data, the API key input field will be visible.
 
 ```typescript
-import {NgGoogleTranslateUiComponent} from 'ng-google-translate-ui';
+import {NgGoogleTranslateUiComponent} from 'ngx-google-translate-ui';
 ...
 openDialog() {
     const dialogConfig: GoogleTranslateDialogModel = {
@@ -51,7 +51,7 @@ openDialog() {
 There is also exported service for fetching translation using POST method.
 
 ```typescript
-import { GoogleTranslationService } from 'ng-google-translate-ui';
+import { GoogleTranslationService } from 'ngx-google-translate-ui';
 ...
 constructor(private googleService: GoogleTranslationService){
 

@@ -31,7 +31,10 @@
 						</mat-form-field>
 					</div>
 
-					<mat-form-field class="full-width padding">
+					<mat-form-field
+						class="full-width padding"
+						[ngClass]="{ 'full-width': true, padding: !dialogData?.apiKey }"
+					>
 						<mat-label>Insert text</mat-label>
 						<textarea
 							matInput
@@ -44,10 +47,7 @@
 						>
 					</mat-form-field>
 
-					<mat-form-field
-						appearance="fill"
-						[ngClass]="{ 'full-width': true, padding: dialogData?.apiKey }"
-					>
+					<mat-form-field appearance="fill" y class="full-width padding">
 						<mat-label>To</mat-label>
 						<mat-select formControlName="targetLangs" ngDefaultControl multiple>
 							<mat-option

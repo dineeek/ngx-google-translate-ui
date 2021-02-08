@@ -25,7 +25,7 @@ To use this library you need to provide Google API key.
 
 Process of translation is analog as in the real Google translator.
 
-![Translator UI](https://github.com/dineeek/ng-google-translate-ui/blob/dev/ui.png?raw=true)
+![Translator UI](https://github.com/dineeek/ng-google-translate-ui/blob/main/ui.png?raw=true)
 
 The output of translation can be separately copied to clipboard to manipulate or it can be coped as raw JSON data.
 

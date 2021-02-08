@@ -1,5 +1,13 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import {
+	Component,
+	Inject,
+	OnInit,
+	Optional,
+	ViewEncapsulation
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { GoogleTranslateDialogModel } from '../models/google-translate-dialog.model';
 import { GoogleTranslationBodyModel } from '../models/google-translation.model';
 import { GoogleTranslationService } from '../util/google-translation.service';
 import { LANGS } from '../util/languages';
@@ -13,7 +21,7 @@ import { CloudCredentialsMessage } from '../util/tooltips-messages';
 	styleUrls: ['./ng-google-translate-ui.component.scss'],
 	encapsulation: ViewEncapsulation.None
 })
-export class NgGoogleTranslateUiComponent {
+export class NgGoogleTranslateUiComponent implements OnInit {
 	languages = LANGS;
 	cloudCredentialsTooltip = CloudCredentialsMessage;
 	translations: { [key: string]: string } = {};
@@ -29,7 +37,24 @@ export class NgGoogleTranslateUiComponent {
 		return 0;
 	};
 
-	constructor(private googleService: GoogleTranslationService) {}
+	constructor(
+		private googleService: GoogleTranslationService,
+		@Optional()
+		@Inject(MAT_DIALOG_DATA)
+		public dialogData: GoogleTranslateDialogModel
+	) {}
+
+	ngOnInit(): void {
+		if (this.dialogData) {
+			this.multiTranslateForm.get('apiKey')?.setValue(this.dialogData.apiKey);
+
+			this.dialogData.translationText
+				? this.multiTranslateForm
+						.get('sourceText')
+						?.setValue(this.dialogData.translationText)
+				: this.multiTranslateForm.get('sourceText')?.setValue('');
+		}
+	}
 
 	/**
 	 * @returns void - Fetches the translations from Cloud Translation API using the provided API key.

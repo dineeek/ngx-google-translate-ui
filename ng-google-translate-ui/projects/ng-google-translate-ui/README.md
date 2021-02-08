@@ -29,13 +29,21 @@ Process of translation is analog as in the real Google translator.
 
 The output of translation can be separately copied to clipboard to manipulate or it can be coped as raw JSON data.
 
-This library can be used in your project as MatDialog.
+This library can be used in your project as MatDialog. Provide data as type of `GoogleTranslateDialogModel`. The required data is Google API key and optional translationText.
+In that way the input field for a API key won't be visible and it will be remembered for fetching translations.
+
+Without providing dialog configuration data, the API key input field will be visible.
 
 ```typescript
 import {NgGoogleTranslateUiComponent} from 'ng-google-translate-ui';
 ...
 openDialog() {
-    const dialogRef = this.dialog.open(NgGoogleTranslateUiComponent);
+    const dialogConfig: GoogleTranslateDialogModel = {
+        apiKey: 'YOUR_GOOGLE_API_KEY',
+	    translationText?: 'My hand is broken!"; //Optional
+    }
+
+    const dialogRef = this.dialog.open(NgGoogleTranslateUiComponent, , {data: dialogConfig});
 }
 ...
 ```

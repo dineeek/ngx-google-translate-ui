@@ -8,26 +8,28 @@
 		<mat-card-content>
 			<div [formGroup]="multiTranslateForm" class="content">
 				<div class="fields">
-					<mat-form-field class="custom-width">
-						<mat-label>Google API key</mat-label>
-						<input
-							matInput
-							formControlName="apiKey"
-							placeholder="Google API key"
-						/>
-						<mat-icon
-							matSuffix
-							class="cloud-credentials"
-							(click)="onCloudCredentialsHelpClick($event)"
-							[matTooltip]="cloudCredentialsTooltip"
-							matTooltipPosition="below"
-						>
-							help_outline
-						</mat-icon>
-						<mat-error *ngIf="multiTranslateForm.get('apiKey').invalid"
-							>Required to fetch translations!</mat-error
-						>
-					</mat-form-field>
+					<div *ngIf="dialogData?.apiKey">
+						<mat-form-field class="custom-width">
+							<mat-label>Google API key</mat-label>
+							<input
+								matInput
+								formControlName="apiKey"
+								placeholder="Google API key"
+							/>
+							<mat-icon
+								matSuffix
+								class="cloud-credentials"
+								(click)="onCloudCredentialsHelpClick($event)"
+								[matTooltip]="cloudCredentialsTooltip"
+								matTooltipPosition="below"
+							>
+								help_outline
+							</mat-icon>
+							<mat-error *ngIf="multiTranslateForm.get('apiKey').invalid"
+								>Required to fetch translations!</mat-error
+							>
+						</mat-form-field>
+					</div>
 
 					<mat-form-field class="full-width padding">
 						<mat-label>Insert text</mat-label>

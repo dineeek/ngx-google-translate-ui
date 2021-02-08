@@ -2,6 +2,10 @@
 
 An Angular Material UI for Google Translate（based on Cloud Translation API).
 
+<p align="start">
+    <a href="https://travis-ci.com/dineeek/ng-google-translate-ui"><img src="https://travis-ci.com/dineeek/ng-google-translate-ui.svg?token=YSspYgvLPX2y3Q9zRFxp&branch=main" /></a>
+</p>
+
 # Feature
 
 - Text translation

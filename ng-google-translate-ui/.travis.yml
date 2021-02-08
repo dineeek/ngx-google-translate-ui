@@ -4,7 +4,20 @@ addons:
 language: node_js
 node_js:
   - node
+before_script:
+  - npm install -g @angular/cli
+  - npm install --save-dev @angular-devkit/build-angular
+  - npm install @angular/core rxjs --save
+  - npm install karma
+  - npm install karma-jasmine
+  - npm install karma-chrome-launcher
+  - npm install karma-jasmine-html-reporter
+  - npm install karma-coverage
+  - npm install --save-dev @types/jest
+  - npm install @angular/material
+  - npm install @angular/platform-browser --save
 script:
+  - cd ng-google-translate-ui
   - npm run test-ci
   - npm run build-ci
 before_deploy:

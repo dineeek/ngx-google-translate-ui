@@ -35,7 +35,7 @@ In that way the input field for a API key won't be visible and it will be rememb
 Without providing dialog configuration data, the API key input field will be visible.
 
 ```typescript
-import {NgGoogleTranslateUiComponent} from 'ngx-google-translate-ui';
+import {NgxGoogleTranslateUiComponent} from 'ngx-google-translate-ui';
 ...
 openDialog() {
     const dialogConfig: GoogleTranslateDialogModel = {
@@ -43,7 +43,7 @@ openDialog() {
 	    translationText?: 'My hand is broken!"; //Optional
     }
 
-    const dialogRef = this.dialog.open(NgGoogleTranslateUiComponent, , {data: dialogConfig});
+    const dialogRef = this.dialog.open(NgxGoogleTranslateUiComponent, , {data: dialogConfig});
 }
 ...
 ```

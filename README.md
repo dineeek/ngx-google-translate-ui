@@ -40,10 +40,10 @@ import {NgGoogleTranslateUiComponent} from 'ng-google-translate-ui';
 openDialog() {
     const dialogConfig: GoogleTranslateDialogModel = {
         apiKey: 'YOUR_GOOGLE_API_KEY',
-	    translationText?: 'My hand is broken!"; //Optional
+	    translationText?: 'My hand is broken!' //Optional
     }
 
-    const dialogRef = this.dialog.open(NgGoogleTranslateUiComponent, , {data: dialogConfig});
+    const dialogRef = this.dialog.open(NgGoogleTranslateUiComponent, {data: dialogConfig});
 }
 ...
 ```

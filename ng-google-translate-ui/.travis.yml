@@ -1,0 +1,20 @@
+sudo: required
+addons:
+  chrome: stable
+language: node_js
+node_js:
+  - node
+script:
+  - npm run test-ci
+  - npm run build-ci
+before_deploy:
+  - cd dist/ng-google-translate-ui
+deploy:
+  provider: npm
+  email: klicek.dino@gmail.com
+  api_key:
+    secure: N/Z9ZIuDMaKh9W6TZmAXs4yVqyoqUYULI9i9pLT35vp/pMDYHoN7/66mbjKkL9A8H2A/fTyoZhNbwMTBPCDpzS0OSHX5OYHgqQRaFp9K2Y3TvIC19ZIPAImTGVssgWOi9Jv3dIQTM+AvpaereSYaovLuA3TTF89TpQ7f8ZP8rfDjuLZiCTfe+vrLkuS9hRg1GuoyDPKACAAwx8O862eaXDLDAheOSQjam0M+JDHdJ+urUFon4UhMBUm6PXV5SbvvTu2Py0M9qk76HyYS8mLP5yZpLWkm2aLc/rcGZO9J6UPqA5Dt17KHSrNAAfnKvoSEBY9oK1vp6hISonBJnNB6a1ZX/Dpi75lPeSo029/ZRq3KM6lXikM7Wm6z3QYXUB7hUkkrrslvXTNGyh4Ki7RcPvEzI3RkcnukvjPqG9YOj4+Y9Ao1VtOXp4SzWiQlDwumn1ceodo7c91g3sZ+vActBfroFOAVkgGpFNYOw0Pw4jux7u26EB1k4lQhVU9WbnzpWuIWArtSx6PD7+dmhOfp3BUGFfGDTd7fsmr7ykWFub3tuPKLJ9rrNCcJhdTSN8je6dD9PY3dQ0510YhyHqOCylMORM2EkXyHPe0K6fNiFQw53k2PYCM5RTYtPXpkz6l20kNvgP6fYeWdHyt+LPpCY+d/SxbRwOZiwSGF99jTQBw=
+  on:
+    tags: true
+    repo: dineeek/ng-google-translate-ui
+  skip_cleanup: 'true'

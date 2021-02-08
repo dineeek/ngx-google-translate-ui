@@ -43,7 +43,7 @@ openDialog() {
 	    translationText?: 'My hand is broken!"; //Optional
     }
 
-    const dialogRef = this.dialog.open(NgxGoogleTranslateUiComponent, , {data: dialogConfig});
+    const dialogRef = this.dialog.open(NgxGoogleTranslateUiComponent, {data: dialogConfig});
 }
 ...
 ```

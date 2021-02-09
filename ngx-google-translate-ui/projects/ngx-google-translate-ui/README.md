@@ -4,6 +4,12 @@ An Angular Material UI for Google Translate（based on Cloud Translation API).
 
 <p align="start">
     <a href="https://travis-ci.com/dineeek/ngx-google-translate-ui"><img src="https://travis-ci.com/dineeek/ngx-google-translate-ui.svg?token=YSspYgvLPX2y3Q9zRFxp&branch=main" /></a>
+    <a href="https://www.npmjs.com/package/ngx-google-translate-ui" rel="nofollow"><img src="https://img.shields.io/npm/l/ngx-google-translate-ui.svg?style=flat" style="max-width:100%;"></a>
+    [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fdineeek%2Fngx-google-translate-ui.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fdineeek%2Fngx-google-translate-ui?ref=badge_shield)
+    <a href="https://www.npmjs.com/package/ngx-google-translate-ui"><img alt="weekly downloads from npm" src="https://img.shields.io/npm/dw/ngx-google-translate-ui.svg?style=flat-square"></a>
+    <a href="https://npmcharts.com/compare/ngx-google-translate-ui?minimal=true" rel="nofollow"><img src="https://img.shields.io/npm/dm/ngx-google-translate-ui.svg" style="max-width:100%;"></a>
+    [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+    <a href="https://www.npmjs.com/package/ngx-google-translate-ui"><img alt="npm version" src="https://img.shields.io/npm/v/ngx-google-translate-ui.svg?style=flat-square"></a>
 </p>
 
 # Feature

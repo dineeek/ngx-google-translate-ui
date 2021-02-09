@@ -32,7 +32,6 @@ To use this library you need to provide Google API key.
 Process of translation is analog as in the real Google translator.
 
 ![Translator UI](https://github.com/dineeek/ngx-google-translate-ui/blob/main/ui.png?raw=true)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fdineeek%2Fngx-google-translate-ui.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fdineeek%2Fngx-google-translate-ui?ref=badge_shield)
 
 The output of translation can be separately copied to clipboard to manipulate or it can be coped as raw JSON data.
 
@@ -78,6 +77,3 @@ this.googleService.getTranslations('your_api_key', body); // returns Observable 
 MIT License
 
 Copyright (c) 2021 Dino Klicek
-
-
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fdineeek%2Fngx-google-translate-ui.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fdineeek%2Fngx-google-translate-ui?ref=badge_large)

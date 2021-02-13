@@ -7,8 +7,6 @@ import { GoogleTranslationService } from '../util/google-translation.service';
 import { LANGS } from '../util/languages';
 import { CloudCredentialsMessage } from '../util/tooltips-messages';
 
-// TODO tests
-
 @Component({
 	selector: 'lib-ngx-google-translate-ui',
 	templateUrl: './ngx-google-translate-ui.component.html',
@@ -71,14 +69,12 @@ export class NgxGoogleTranslateUiComponent implements OnInit {
 				q: this.translationText?.value,
 				target: targetLang
 			};
-
 			const translation = await this.googleService
 				.getTranslations(this.apiKey?.value, body)
 				.toPromise();
 
 			this.translations[LANGS[targetLang.toLowerCase()]] =
 				translation.translatedText;
-
 			this.emptyTranslationsFlag = false;
 		});
 	}

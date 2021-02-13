@@ -1,10 +1,4 @@
-import {
-	Component,
-	Inject,
-	OnInit,
-	Optional,
-	ViewEncapsulation
-} from '@angular/core';
+import { Component, Inject, OnInit, Optional } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { GoogleTranslateDialogModel } from '../models/google-translate-dialog.model';
@@ -18,17 +12,16 @@ import { CloudCredentialsMessage } from '../util/tooltips-messages';
 @Component({
 	selector: 'lib-ngx-google-translate-ui',
 	templateUrl: './ngx-google-translate-ui.component.html',
-	styleUrls: ['./ngx-google-translate-ui.component.scss'],
-	encapsulation: ViewEncapsulation.None
+	styleUrls: ['./ngx-google-translate-ui.component.scss']
 })
 export class NgxGoogleTranslateUiComponent implements OnInit {
-	readonly languages = LANGS;
-	cloudCredentialsTooltip = CloudCredentialsMessage;
+	public readonly languages = LANGS;
+	public cloudCredentialsTooltip = CloudCredentialsMessage;
 
-	translations: { [key: string]: string } = {};
-	emptyTranslationsFlag = true; // delete and look at translations
+	public translations: { [key: string]: string } = {};
+	public emptyTranslationsFlag = true; // delete and look at translations
 
-	multiTranslateForm = new FormGroup({
+	public multiTranslateForm = new FormGroup({
 		apiKey: new FormControl('', Validators.required),
 		translationText: new FormControl('', Validators.required),
 		targetLangs: new FormControl([], Validators.required)

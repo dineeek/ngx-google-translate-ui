@@ -1,10 +1,10 @@
 {
 	"name": "ngx-google-translate-ui",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"scripts": {
 		"build": "ng build --project ngx-google-translate-ui --prod",
 		"publish": "cd dist/ngx-google-translate-ui && npm publish",
-		"test": "ng test",
+		"test": "ng test --code-coverage",
 		"lint": "ng lint",
 		"build-ci": "ng build ngx-google-translate-ui --prod",
 		"test-ci": "ng test ngx-google-translate-ui --watch=false --browsers=ChromeHeadless"

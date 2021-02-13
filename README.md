@@ -74,6 +74,6 @@ this.googleService.getTranslations('your_api_key', body); // returns Observable 
 
 # License
 
-MIT License
+Apache License
 
 Copyright (c) 2021 Dino Klicek

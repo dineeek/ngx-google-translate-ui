@@ -1,9 +1,10 @@
 {
 	"name": "ngx-google-translate-ui",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"peerDependencies": {
 		"@angular/common": "^11.1.2",
-		"@angular/core": "^11.1.2"
+		"@angular/core": "^11.1.2",
+		"@angular/material": "11.2.0"
 	},
 	"dependencies": {
 		"tslib": "^2.0.0"
@@ -23,9 +24,13 @@
 	"keywords": [
 		"google",
 		"translate",
-		"multi",
-		"angular"
+		"multi translations",
+		"angular",
+		"ui",
+		"translate",
+		"translation api"
 	],
+	"license": "Apache",
 	"homepage": "https://github.com/dineeek/ngx-google-translate-ui/blob/main/README.md",
 	"bugs": {
 		"url": "https://github.com/dineeek/ngx-google-translate-ui/issues"

@@ -19,6 +19,8 @@ An Angular Material UI for Google Translate（based on Cloud Translation API).
 - Multiple language translation
 - Fast and reliable – it uses the same servers that [translate.google.com](https://translate.google.com/) uses
 
+**[View live demo on StackBlitz.](https://ngx-google-translate-ui.stackblitz.io)**
+
 # Install
 
 ```shell

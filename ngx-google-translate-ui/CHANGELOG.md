@@ -1,5 +1,17 @@
 ### 1.0.1
 
-#### Fixes
+#### Docs
 
-- Documentation updated
+- Documentation updates
+
+### 1.0.2
+
+#### Tests
+
+- Added tests
+
+### 1.0.3
+
+#### Docs
+
+- Added Stackblitz example of usage

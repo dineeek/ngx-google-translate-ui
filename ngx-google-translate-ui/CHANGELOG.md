@@ -15,3 +15,9 @@
 #### Docs
 
 - Added Stackblitz example of usage
+
+### 1.0.4
+
+#### Docs
+
+- Documentation updates

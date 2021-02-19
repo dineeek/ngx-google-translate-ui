@@ -17,6 +17,7 @@ import {
 import { of } from 'rxjs';
 import { GoogleTranslationService } from '../util/google-translation.service';
 import { NgxGoogleTranslateUiComponent } from './ngx-google-translate-ui.component';
+import { TranslationResultsComponent } from './translation-results/translation-results.component';
 
 describe('NgxGoogleTranslateUiComponent', () => {
 	let component: NgxGoogleTranslateUiComponent;
@@ -121,6 +122,40 @@ describe('NgxGoogleTranslateUiComponent', () => {
 
 		expect(Object.keys(component.translations)).toContain('German');
 		expect(Object.values(component.translations)).toContain('Hallo Welt');
+	}));
+
+	it('should send fetched translations to child component', fakeAsync(() => {
+		googleService = TestBed.inject(GoogleTranslationService);
+
+		spyOn(googleService, 'getTranslations').and.returnValue(
+			of(GoogleServiceResponseMock)
+		);
+
+		component.apiKey?.setValue('hgsdfa515as1f5as1f');
+		component.translationText?.setValue('Hello world');
+		component.targetLangs?.setValue(['de']);
+
+		fixture.detectChanges();
+
+		const searchButton = debugElement.query(By.css('#search')).nativeElement;
+
+		searchButton.click();
+		tick();
+
+		expect(Object.keys(component.translations)).toContain('German');
+		expect(Object.values(component.translations)).toContain('Hallo Welt');
+		expect(component.emptyTranslationsFlag).toEqual(false);
+
+		fixture.detectChanges();
+
+		const transResultsComponent: TranslationResultsComponent = debugElement.query(
+			By.css('lib-google-translation-results')
+		).componentInstance;
+
+		expect(Object.keys(transResultsComponent.translations)).toContain('German');
+		expect(Object.values(transResultsComponent.translations)).toContain(
+			'Hallo Welt'
+		);
 	}));
 });
 

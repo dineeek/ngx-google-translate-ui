@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Observable, of, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import {
 	GoogleTranslation,
 	GoogleTranslationBodyModel
@@ -11,7 +12,7 @@ import {
 export class GoogleTranslationService {
 	url = 'https://translation.googleapis.com/language/translate/v2?key=';
 
-	constructor(private httpClient: HttpClient) {}
+	constructor(private httpClient: HttpClient, private snackBar: MatSnackBar) {}
 
 	/**
 	 * @param   apiKey - User's Google API key.
@@ -29,6 +30,17 @@ export class GoogleTranslationService {
 					detectedSourceLanguage:
 						response.data.translations[0].detectedSourceLanguage
 				} as GoogleTranslation;
+			}),
+			catchError(error => {
+				this.snackBar.open(
+					`Something went wrong on contacting Cloud Translation API!`,
+					'X',
+					{
+						duration: 5000
+					}
+				);
+
+				return throwError(error);
 			})
 		);
 	}

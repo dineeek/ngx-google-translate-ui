@@ -73,9 +73,12 @@ export class NgxGoogleTranslateUiComponent implements OnInit {
 				.getTranslations(this.apiKey?.value, body)
 				.toPromise();
 
-			this.translations[LANGS[targetLang.toLowerCase()]] =
-				translation.translatedText;
-			this.emptyTranslationsFlag = false;
+			if (translation) {
+				this.translations[LANGS[targetLang.toLowerCase()]] =
+					translation.translatedText;
+
+				this.emptyTranslationsFlag = false;
+			}
 		});
 	}
 

@@ -21,3 +21,15 @@
 #### Docs
 
 - Documentation updates
+
+### 1.1.0
+
+#### CSS
+
+- Style improvement
+
+### 1.2.0
+
+#### Popular langs
+
+- Added popular languages

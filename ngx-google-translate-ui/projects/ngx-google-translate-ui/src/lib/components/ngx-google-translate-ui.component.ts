@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { GoogleTranslateDialogModel } from '../models/google-translate-dialog.model';
 import { GoogleTranslationBodyModel } from '../models/google-translation.model';
 import { GoogleTranslationService } from '../util/google-translation.service';
-import { LANGS } from '../util/languages';
+import { LANGS, POPULAR_LANGS } from '../util/languages';
 import { CloudCredentialsMessage } from '../util/tooltips-messages';
 
 @Component({
@@ -14,6 +14,8 @@ import { CloudCredentialsMessage } from '../util/tooltips-messages';
 })
 export class NgxGoogleTranslateUiComponent implements OnInit {
 	public readonly languages = LANGS;
+	public readonly popularLanguages = POPULAR_LANGS;
+
 	public cloudCredentialsTooltip = CloudCredentialsMessage;
 
 	public translations: { [key: string]: string } = {};
@@ -22,7 +24,8 @@ export class NgxGoogleTranslateUiComponent implements OnInit {
 	public multiTranslateForm = new FormGroup({
 		apiKey: new FormControl('', Validators.required),
 		translationText: new FormControl('', Validators.required),
-		targetLangs: new FormControl([], Validators.required)
+		targetLangs: new FormControl([], Validators.required),
+		popularLangsToggle: new FormControl(false)
 	});
 
 	get apiKey() {
@@ -35,6 +38,10 @@ export class NgxGoogleTranslateUiComponent implements OnInit {
 
 	get targetLangs() {
 		return this.multiTranslateForm.get('targetLangs');
+	}
+
+	get popularLangsToggle() {
+		return this.multiTranslateForm.get('popularLangsToggle');
 	}
 
 	originalOrder = (): number => {

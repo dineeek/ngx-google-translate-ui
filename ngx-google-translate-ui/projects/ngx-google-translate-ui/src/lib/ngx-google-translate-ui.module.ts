@@ -12,6 +12,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { NgxGoogleTranslateUiComponent } from './components/ngx-google-translate-ui.component';
 import { TranslationResultsComponent } from './components/translation-results/translation-results.component';
 
@@ -30,6 +32,8 @@ import { TranslationResultsComponent } from './components/translation-results/tr
 		MatIconModule,
 		MatSnackBarModule,
 		MatDialogModule,
+		MatSliderModule,
+		MatSlideToggleModule,
 		ClipboardModule
 	],
 	exports: [NgxGoogleTranslateUiComponent]

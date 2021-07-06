@@ -105,3 +105,14 @@ export const LANGS: { [key: string]: string } = {
 	yo: 'Yoruba',
 	zu: 'Zulu'
 };
+
+export const POPULAR_LANGS: { [key: string]: string } = {
+	hr: 'Croatian',
+	cs: 'Czech',
+	en: 'English',
+	fr: 'French',
+	de: 'German',
+	it: 'Italian',
+	sk: 'Slovak',
+	sl: 'Slovenian'
+};

@@ -5,10 +5,10 @@ import { Observable, of, throwError } from 'rxjs'
 import { catchError, map } from 'rxjs/operators'
 import { GoogleTranslationBodyModel, GoogleTranslation } from '../models'
 
+const BASE_URL = 'https://translation.googleapis.com/language/translate/v2?key='
+
 @Injectable({ providedIn: 'root' })
 export class GoogleTranslationService {
-	url = 'https://translation.googleapis.com/language/translate/v2?key='
-
 	constructor(private httpClient: HttpClient, private snackBar: MatSnackBar) {}
 
 	/**
@@ -20,7 +20,7 @@ export class GoogleTranslationService {
 		apiKey: string,
 		transBody: GoogleTranslationBodyModel
 	): Observable<GoogleTranslation> {
-		return this.httpClient.post(`${this.url}${apiKey}`, transBody).pipe(
+		return this.httpClient.post(`${BASE_URL}${apiKey}`, transBody).pipe(
 			map((response: any) => {
 				return {
 					translatedText: response.data.translations[0].translatedText,
@@ -37,7 +37,7 @@ export class GoogleTranslationService {
 					}
 				)
 
-				return throwError(error)
+				return throwError(() => error)
 			})
 		)
 	}

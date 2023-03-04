@@ -5,11 +5,7 @@ import {
 	OnInit,
 	Optional
 } from '@angular/core'
-import {
-	UntypedFormControl,
-	UntypedFormGroup,
-	Validators
-} from '@angular/forms'
+import { FormControl, NonNullableFormBuilder, Validators } from '@angular/forms'
 import { MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { LANGS, POPULAR_LANGS, CLOUD_CREDENTIALS_TOOLTIP_MSG } from '../../meta'
 import {
@@ -17,6 +13,13 @@ import {
 	GoogleTranslationBodyModel
 } from '../../models'
 import { GoogleTranslationService } from '../../services/google-translation.service'
+
+export interface NgxGoogleTranslateUiForm {
+	apiKey: FormControl<string>
+	translationText: FormControl<string>
+	targetLangs: FormControl<string[]>
+	popularLangsToggle: FormControl<boolean>
+}
 
 @Component({
 	selector: 'lib-ngx-google-translate-ui',
@@ -31,27 +34,27 @@ export class NgxGoogleTranslateUiComponent implements OnInit {
 
 	translations: { [key: string]: string } = {}
 
-	formGroup = new UntypedFormGroup({
-		apiKey: new UntypedFormControl('', Validators.required),
-		translationText: new UntypedFormControl('', Validators.required),
-		targetLangs: new UntypedFormControl([], Validators.required),
-		popularLangsToggle: new UntypedFormControl(false)
+	formGroup = this.formBuilder.group<NgxGoogleTranslateUiForm>({
+		apiKey: this.formBuilder.control('', Validators.required),
+		translationText: this.formBuilder.control('', Validators.required),
+		targetLangs: this.formBuilder.control([], Validators.required),
+		popularLangsToggle: this.formBuilder.control(false)
 	})
 
-	get apiKey(): UntypedFormControl {
-		return this.formGroup.get('apiKey') as UntypedFormControl
+	get apiKey(): FormControl<string> {
+		return this.formGroup.get('apiKey') as FormControl<string>
 	}
 
-	get translationText(): UntypedFormControl {
-		return this.formGroup.get('translationText') as UntypedFormControl
+	get translationText(): FormControl<string> {
+		return this.formGroup.get('translationText') as FormControl<string>
 	}
 
-	get targetLangs(): UntypedFormControl {
-		return this.formGroup.get('targetLangs') as UntypedFormControl
+	get targetLangs(): FormControl<string[]> {
+		return this.formGroup.get('targetLangs') as FormControl<string[]>
 	}
 
-	get popularLangsToggle(): UntypedFormControl {
-		return this.formGroup.get('popularLangsToggle') as UntypedFormControl
+	get popularLangsToggle(): FormControl<boolean> {
+		return this.formGroup.get('popularLangsToggle') as FormControl<boolean>
 	}
 
 	originalOrder = (): number => {
@@ -59,6 +62,7 @@ export class NgxGoogleTranslateUiComponent implements OnInit {
 	}
 
 	constructor(
+		private formBuilder: NonNullableFormBuilder,
 		private googleService: GoogleTranslationService,
 		@Optional()
 		@Inject(MAT_DIALOG_DATA)

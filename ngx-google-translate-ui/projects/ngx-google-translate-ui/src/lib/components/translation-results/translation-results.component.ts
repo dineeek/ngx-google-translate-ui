@@ -4,7 +4,7 @@ import {
 	Input,
 	ViewEncapsulation
 } from '@angular/core'
-import { MatSnackBar } from '@angular/material/snack-bar'
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar'
 
 @Component({
 	selector: 'lib-google-translation-results',

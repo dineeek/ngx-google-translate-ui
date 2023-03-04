@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { MatSnackBar } from '@angular/material/snack-bar'
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar'
 import { Observable, of, throwError } from 'rxjs'
 import { catchError, map } from 'rxjs/operators'
 import { GoogleTranslationBodyModel, GoogleTranslation } from '../../models'

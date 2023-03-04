@@ -7,7 +7,7 @@ import {
 	tick
 } from '@angular/core/testing'
 import { ReactiveFormsModule } from '@angular/forms'
-import { MAT_DIALOG_DATA } from '@angular/material/dialog'
+import { MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog'
 import { MatIconModule } from '@angular/material/icon'
 import { By } from '@angular/platform-browser'
 

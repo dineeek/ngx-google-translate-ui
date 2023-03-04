@@ -6,7 +6,7 @@ import {
 	Optional
 } from '@angular/core'
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms'
-import { MAT_DIALOG_DATA } from '@angular/material/dialog'
+import { MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog'
 import { LANGS, POPULAR_LANGS, CLOUD_CREDENTIALS_TOOLTIP_MSG } from '../../meta'
 import {
 	GoogleTranslateDialogModel,

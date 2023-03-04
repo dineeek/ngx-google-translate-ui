@@ -3,8 +3,12 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { GoogleTranslationMock } from 'assets/tests/mocks';
 import { TranslationResultsComponent } from './translation-results.component';
+
+export const GoogleTranslationMock = {
+	Croatian: 'Pozdrav svijete!',
+	Deutsche: 'Hallo Welt!'
+};
 
 describe('TranslationResultsComponent', () => {
 	let component: TranslationResultsComponent;

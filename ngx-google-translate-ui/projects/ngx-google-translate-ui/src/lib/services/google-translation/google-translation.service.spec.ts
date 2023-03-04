@@ -1,9 +1,13 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { GoogleServiceResponseMock } from 'assets/tests/mocks';
 import { of } from 'rxjs';
 import { GoogleTranslationBodyModel } from '../../models/google-translation.model';
 import { GoogleTranslationService } from './google-translation.service';
+
+export const GoogleServiceResponseMock = {
+	translatedText: 'Hallo Welt',
+	detectedSourceLanguage: 'en'
+};
 
 describe('GoogleTranslationService', () => {
 	let service: GoogleTranslationService;

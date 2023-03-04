@@ -17,14 +17,16 @@ An Angular Material UI for Google Translate based on Cloud Translation API.
 - Text translation
 - Auto language detection
 - Multiple language translation
-- Fast and reliable – it uses the same servers that [translate.google.com](https://translate.google.com/) uses
+- Fast and reliable – it uses the same Google translate servers
 
 **[View live demo on StackBlitz.](https://ngx-google-translate-ui.stackblitz.io)**
 
 # Install
 
 ```shell
-npm install --save ngx-google-translate-ui
+
+npm install ngx-google-translate-ui
+
 ```
 
 # Usage
@@ -33,24 +35,23 @@ To use this library you need to provide Google API key.
 
 Process of translation is analog as in the real Google translator.
 
-![Translator UI](https://github.com/dineeek/ngx-google-translate-ui/blob/main/ui.png?raw=true)
+![Translator UI](https://github.com/dineeek/ngx-google-translate-ui/blob/main/assets/ngx-google-translate-ui.png?raw=true)
 
-The output of translation can be separately copied to clipboard to manipulate or it can be coped as raw JSON data.
+The output of translation can be separately copied to clipboard or it can be copied as raw JSON data.
 
-This library can be used in your project as MatDialog. Provide data as type of `GoogleTranslateDialogModel`. The required data is Google API key and optional translationText.
-In that way the input field for a API key won't be visible and it will be remembered for fetching translations.
-
-Without providing dialog configuration data, the API key input field will be visible.
+This library can be used in your project as a dialog component.
+Provide data as type of `GoogleTranslateDialogModel` - property Google API key as required and translation text as optional.
+When API key is provided, the input field it will be hidden. Otherwise, the API key input field will be visible.
 
 ```typescript
 
-import {NgxGoogleTranslateUiComponent} from 'ngx-google-translate-ui';
+import { NgxGoogleTranslateUiComponent } from 'ngx-google-translate-ui';
 
-openDialog() {
+openDialog () {
   const dialogConfig: GoogleTranslateDialogModel = {
     apiKey: 'YOUR_GOOGLE_API_KEY',
-	translationText?: 'My hand is broken!"; //Optional
-  }
+	  translationText?: 'My hand is broken!'
+  };
 
   const dialogRef = this.dialog.open(NgxGoogleTranslateUiComponent, {data: dialogConfig});
 }
@@ -63,7 +64,7 @@ There is also exported service for fetching translation using POST method.
 
 import { GoogleTranslationService } from 'ngx-google-translate-ui';
 
-constructor(private googleService: GoogleTranslationService){}
+constructor (private googleService: GoogleTranslationService){}
 
 const body: GoogleTranslationBodyModel {
     q: 'Vehicle',
@@ -73,6 +74,10 @@ const body: GoogleTranslationBodyModel {
 this.googleService.getTranslations('your_api_key', body);
 
 ```
+
+# Contributing
+
+Contributions are welcome!
 
 # License
 

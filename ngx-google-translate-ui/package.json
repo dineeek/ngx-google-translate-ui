@@ -5,6 +5,7 @@
 		"build": "ng build --project ngx-google-translate-ui --prod",
 		"publish": "cd dist/ngx-google-translate-ui && npm publish",
 		"test": "ng test --code-coverage",
+		"style": "prettier --write \"projects/ngx-google-translate-ui/**/*.{hmtl,css,ts,tsx}\"",
 		"lint": "ng lint",
 		"build-ci": "ng build ngx-google-translate-ui --prod",
 		"test-ci": "ng test ngx-google-translate-ui --watch=false --browsers=ChromeHeadless"
@@ -50,6 +51,7 @@
 		"karma-jasmine": "~4.0.0",
 		"karma-jasmine-html-reporter": "^1.5.0",
 		"ng-packagr": "^11.0.0",
+		"prettier": "^2.8.4",
 		"protractor": "~7.0.0",
 		"ts-node": "~8.3.0",
 		"tslint": "~6.1.0",

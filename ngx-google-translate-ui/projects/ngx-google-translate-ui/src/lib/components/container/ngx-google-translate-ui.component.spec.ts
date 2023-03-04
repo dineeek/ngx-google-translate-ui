@@ -10,14 +10,27 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { By } from '@angular/platform-browser';
-import {
-	GoogleServiceResponseMock,
-	MatDialogDataMock
-} from 'assets/tests/mocks';
+
 import { of } from 'rxjs';
-import { GoogleTranslationService } from '../../util/google-translation.service';
 import { NgxGoogleTranslateUiComponent } from './ngx-google-translate-ui.component';
 import { TranslationResultsComponent } from './../translation-results/translation-results.component';
+import { GoogleTranslationService } from '../../services';
+import { GoogleTranslateDialogModel } from '../../models';
+
+export const GoogleServiceResponseMock = {
+	translatedText: 'Hallo Welt',
+	detectedSourceLanguage: 'en'
+};
+
+export const MatDialogDataMock: GoogleTranslateDialogModel = {
+	apiKey: 'jkaskjd215najsndkj14asn',
+	translationText: 'Hello World!'
+};
+
+export const GoogleTranslationMock = {
+	Croatian: 'Pozdrav svijete!',
+	Deutsche: 'Hallo Welt!'
+};
 
 describe('NgxGoogleTranslateUiComponent', () => {
 	let component: NgxGoogleTranslateUiComponent;

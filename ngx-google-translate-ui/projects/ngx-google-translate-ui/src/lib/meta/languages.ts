@@ -104,7 +104,7 @@ export const LANGS: { [key: string]: string } = {
 	yi: 'Yiddish',
 	yo: 'Yoruba',
 	zu: 'Zulu'
-};
+}
 
 export const POPULAR_LANGS: { [key: string]: string } = {
 	hr: 'Croatian',
@@ -115,4 +115,4 @@ export const POPULAR_LANGS: { [key: string]: string } = {
 	it: 'Italian',
 	sk: 'Slovak',
 	sl: 'Slovenian'
-};
+}

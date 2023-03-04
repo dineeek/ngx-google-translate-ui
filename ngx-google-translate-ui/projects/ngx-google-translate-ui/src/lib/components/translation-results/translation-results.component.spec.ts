@@ -1,18 +1,18 @@
-import { ClipboardModule } from '@angular/cdk/clipboard';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { TranslationResultsComponent } from './translation-results.component';
+import { ClipboardModule } from '@angular/cdk/clipboard'
+import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { MatIconModule } from '@angular/material/icon'
+import { MatListModule } from '@angular/material/list'
+import { MatSnackBarModule } from '@angular/material/snack-bar'
+import { TranslationResultsComponent } from './translation-results.component'
 
 export const GoogleTranslationMock = {
 	Croatian: 'Pozdrav svijete!',
 	Deutsche: 'Hallo Welt!'
-};
+}
 
 describe('TranslationResultsComponent', () => {
-	let component: TranslationResultsComponent;
-	let fixture: ComponentFixture<TranslationResultsComponent>;
+	let component: TranslationResultsComponent
+	let fixture: ComponentFixture<TranslationResultsComponent>
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
@@ -23,31 +23,31 @@ describe('TranslationResultsComponent', () => {
 				MatIconModule,
 				MatListModule
 			]
-		}).compileComponents();
-	});
+		}).compileComponents()
+	})
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(TranslationResultsComponent);
-		component = fixture.componentInstance;
-		component.translations = GoogleTranslationMock;
-		fixture.detectChanges();
-	});
+		fixture = TestBed.createComponent(TranslationResultsComponent)
+		component = fixture.componentInstance
+		component.translations = GoogleTranslationMock
+		fixture.detectChanges()
+	})
 
 	it('should create', () => {
-		expect(component).toBeTruthy();
-	});
+		expect(component).toBeTruthy()
+	})
 
 	it('should open snackbar', () => {
-		spyOn(component, 'openSnackBar');
-		component.openSnackBar('de');
+		spyOn(component, 'openSnackBar')
+		component.openSnackBar('de')
 
-		expect(component.openSnackBar).toHaveBeenCalledTimes(1);
-		expect(component.openSnackBar).toHaveBeenCalledWith('de');
-	});
+		expect(component.openSnackBar).toHaveBeenCalledTimes(1)
+		expect(component.openSnackBar).toHaveBeenCalledWith('de')
+	})
 
 	it('should stringify forwarded translations', () => {
-		const translationJSON = component.onCopyAll();
+		const translationJSON = component.onCopyAll()
 
-		expect(translationJSON).toEqual(JSON.stringify(GoogleTranslationMock));
-	});
-});
+		expect(translationJSON).toEqual(JSON.stringify(GoogleTranslationMock))
+	})
+})

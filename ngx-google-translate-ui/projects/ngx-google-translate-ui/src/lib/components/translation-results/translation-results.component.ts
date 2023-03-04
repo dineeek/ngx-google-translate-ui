@@ -1,5 +1,5 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { Component, Input, ViewEncapsulation } from '@angular/core'
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 @Component({
 	selector: 'lib-google-translation-results',
@@ -9,7 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class TranslationResultsComponent {
 	@Input()
-	translations: { [key: string]: string } = {};
+	translations: { [key: string]: string } = {}
 
 	constructor(private snackBar: MatSnackBar) {}
 
@@ -26,13 +26,13 @@ export class TranslationResultsComponent {
 			{
 				duration: 5000
 			}
-		);
+		)
 	}
 
 	/**
 	 * @returns string - JSON stringified fetched translations.
 	 */
 	onCopyAll(): string {
-		return JSON.stringify(this.translations);
+		return JSON.stringify(this.translations)
 	}
 }

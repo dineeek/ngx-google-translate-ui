@@ -1,2 +1,2 @@
-export * from './languages';
-export * from '../meta/tooltips-messages';
+export * from './languages'
+export * from '../meta/tooltips-messages'

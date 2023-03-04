@@ -1,13 +1,13 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Observable, of, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
-import { GoogleTranslationBodyModel, GoogleTranslation } from '../../models';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http'
+import { Injectable } from '@angular/core'
+import { MatSnackBar } from '@angular/material/snack-bar'
+import { Observable, of, throwError } from 'rxjs'
+import { catchError, map } from 'rxjs/operators'
+import { GoogleTranslationBodyModel, GoogleTranslation } from '../../models'
 
 @Injectable({ providedIn: 'root' })
 export class GoogleTranslationService {
-	url = 'https://translation.googleapis.com/language/translate/v2?key=';
+	url = 'https://translation.googleapis.com/language/translate/v2?key='
 
 	constructor(private httpClient: HttpClient, private snackBar: MatSnackBar) {}
 
@@ -26,7 +26,7 @@ export class GoogleTranslationService {
 					translatedText: response.data.translations[0].translatedText,
 					detectedSourceLanguage:
 						response.data.translations[0].detectedSourceLanguage
-				} as GoogleTranslation;
+				} as GoogleTranslation
 			}),
 			catchError(error => {
 				this.snackBar.open(
@@ -35,10 +35,10 @@ export class GoogleTranslationService {
 					{
 						duration: 5000
 					}
-				);
+				)
 
-				return throwError(error);
+				return throwError(error)
 			})
-		);
+		)
 	}
 }

@@ -1,4 +1,4 @@
 export interface GoogleTranslateDialogModel {
-	apiKey: string;
-	translationText?: string;
+	apiKey: string
+	translationText?: string
 }

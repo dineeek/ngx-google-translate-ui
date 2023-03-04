@@ -26,9 +26,12 @@
 		"translate",
 		"multi translations",
 		"angular",
-		"ui",
-		"translate",
-		"translation api"
+		"material ui",
+		"translation api",
+		"localization",
+		"google api key",
+		"languages",
+		"npmjs"
 	],
 	"license": "Apache",
 	"homepage": "https://github.com/dineeek/ngx-google-translate-ui/blob/main/README.md",

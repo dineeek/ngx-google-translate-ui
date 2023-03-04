@@ -22,7 +22,7 @@ An Angular Material UI for Google Translate based on Cloud Translation API.
 **[View live demo on StackBlitz.](https://ngx-google-translate-ui.stackblitz.io)**
 
 <p align="center">
-![Translator UI](https://github.com/dineeek/ngx-google-translate-ui/blob/main/assets/ngx-google-translate-ui.png?raw=true)
+  <img src="https://github.com/dineeek/ngx-google-translate-ui/blob/main/assets/ngx-google-translate-ui.png" alt="Slideshow" />
 </p>
 
 # Install

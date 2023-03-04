@@ -6,21 +6,12 @@
 		"publish": "cd dist/ngx-google-translate-ui && npm publish",
 		"test": "ng test --code-coverage",
 		"style": "prettier --write \"projects/ngx-google-translate-ui/**/*.{hmtl,css,ts,tsx}\"",
+		"clean": "rimraf dist",
 		"lint": "ng lint",
 		"build-ci": "ng build ngx-google-translate-ui --prod",
 		"test-ci": "ng test ngx-google-translate-ui --watch=false --browsers=ChromeHeadless"
 	},
 	"private": true,
-	"author": "Dino Klicek",
-	"keywords": [
-		"google",
-		"translate",
-		"multiple",
-		"google api key",
-		"popular languages",
-		"ng google translate"
-	],
-	"license": "Apache",
 	"dependencies": {
 		"@angular/animations": "~11.1.2",
 		"@angular/cdk": "^11.1.2",

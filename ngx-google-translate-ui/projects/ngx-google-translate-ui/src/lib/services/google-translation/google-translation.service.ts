@@ -3,10 +3,7 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import {
-	GoogleTranslation,
-	GoogleTranslationBodyModel
-} from '../models/google-translation.model';
+import { GoogleTranslationBodyModel, GoogleTranslation } from '../../models';
 
 @Injectable({ providedIn: 'root' })
 export class GoogleTranslationService {

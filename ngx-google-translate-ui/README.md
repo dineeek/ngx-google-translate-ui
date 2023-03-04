@@ -1,6 +1,6 @@
 # ngx-google-translate-ui
 
-An Angular Material UI for Google Translate（based on Cloud Translation API).
+An Angular Material UI for Google Translate based on Cloud Translation API.
 
 <p align="start">
     <a href="https://travis-ci.com/dineeek/ngx-google-translate-ui"><img src="https://travis-ci.com/dineeek/ngx-google-translate-ui.svg?token=YSspYgvLPX2y3Q9zRFxp&branch=main" /></a>
@@ -43,35 +43,35 @@ In that way the input field for a API key won't be visible and it will be rememb
 Without providing dialog configuration data, the API key input field will be visible.
 
 ```typescript
-import {NgxGoogleTranslateUiComponent} from 'ngx-google-translate-ui';
-...
-openDialog() {
-    const dialogConfig: GoogleTranslateDialogModel = {
-        apiKey: 'YOUR_GOOGLE_API_KEY',
-	    translationText?: 'My hand is broken!"; //Optional
-    }
 
-    const dialogRef = this.dialog.open(NgxGoogleTranslateUiComponent, {data: dialogConfig});
+import {NgxGoogleTranslateUiComponent} from 'ngx-google-translate-ui';
+
+openDialog() {
+  const dialogConfig: GoogleTranslateDialogModel = {
+    apiKey: 'YOUR_GOOGLE_API_KEY',
+	translationText?: 'My hand is broken!"; //Optional
+  }
+
+  const dialogRef = this.dialog.open(NgxGoogleTranslateUiComponent, {data: dialogConfig});
 }
-...
+
 ```
 
 There is also exported service for fetching translation using POST method.
 
 ```typescript
-import { GoogleTranslationService } from 'ngx-google-translate-ui';
-...
-constructor(private googleService: GoogleTranslationService){
 
-}
+import { GoogleTranslationService } from 'ngx-google-translate-ui';
+
+constructor(private googleService: GoogleTranslationService){}
 
 const body: GoogleTranslationBodyModel {
     q: 'Vehicle',
     target: 'de'
 }
 
-this.googleService.getTranslations('your_api_key', body); // returns Observable of GoogleTranslation (translatedText and detectedSourceLanguage)
-...
+this.googleService.getTranslations('your_api_key', body);
+
 ```
 
 # License

@@ -14,7 +14,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { NgxGoogleTranslateUiComponent } from './components/ngx-google-translate-ui.component';
+import { NgxGoogleTranslateUiComponent } from './components/container/ngx-google-translate-ui.component';
 import { TranslationResultsComponent } from './components/translation-results/translation-results.component';
 
 @NgModule({

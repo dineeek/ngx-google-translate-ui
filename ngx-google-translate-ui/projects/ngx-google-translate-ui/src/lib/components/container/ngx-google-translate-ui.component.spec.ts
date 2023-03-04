@@ -15,9 +15,9 @@ import {
 	MatDialogDataMock
 } from 'assets/tests/mocks';
 import { of } from 'rxjs';
-import { GoogleTranslationService } from '../util/google-translation.service';
+import { GoogleTranslationService } from '../../util/google-translation.service';
 import { NgxGoogleTranslateUiComponent } from './ngx-google-translate-ui.component';
-import { TranslationResultsComponent } from './translation-results/translation-results.component';
+import { TranslationResultsComponent } from './../translation-results/translation-results.component';
 
 describe('NgxGoogleTranslateUiComponent', () => {
 	let component: NgxGoogleTranslateUiComponent;
@@ -49,12 +49,10 @@ describe('NgxGoogleTranslateUiComponent', () => {
 	});
 
 	it('should have have title and labels', () => {
-		const headerContent = debugElement.nativeElement.querySelector(
-			'mat-card-title'
-		).textContent;
-		const subheaderContent = debugElement.nativeElement.querySelector(
-			'mat-card-subtitle'
-		).textContent;
+		const headerContent =
+			debugElement.nativeElement.querySelector('mat-card-title').textContent;
+		const subheaderContent =
+			debugElement.nativeElement.querySelector('mat-card-subtitle').textContent;
 
 		const apiKeyFieldContent = debugElement.query(By.css('#apiKey'))
 			.nativeElement.textContent;
@@ -148,9 +146,10 @@ describe('NgxGoogleTranslateUiComponent', () => {
 
 		fixture.detectChanges();
 
-		const transResultsComponent: TranslationResultsComponent = debugElement.query(
-			By.css('lib-google-translation-results')
-		).componentInstance;
+		const transResultsComponent: TranslationResultsComponent =
+			debugElement.query(
+				By.css('lib-google-translation-results')
+			).componentInstance;
 
 		expect(Object.keys(transResultsComponent.translations)).toContain('German');
 		expect(Object.values(transResultsComponent.translations)).toContain(
@@ -190,12 +189,10 @@ describe('NgxGoogleTranslateUiComponent as a dialog', () => {
 	});
 
 	it('should have have title and labels', () => {
-		const headerContent = debugElement.nativeElement.querySelector(
-			'mat-card-title'
-		).textContent;
-		const subheaderContent = debugElement.nativeElement.querySelector(
-			'mat-card-subtitle'
-		).textContent;
+		const headerContent =
+			debugElement.nativeElement.querySelector('mat-card-title').textContent;
+		const subheaderContent =
+			debugElement.nativeElement.querySelector('mat-card-subtitle').textContent;
 
 		const apiKeyField = debugElement.query(By.css('#apiKey'));
 
@@ -206,8 +203,9 @@ describe('NgxGoogleTranslateUiComponent as a dialog', () => {
 
 	it('should have stored forwarded data when using as a dialog', () => {
 		const apiKeyField = debugElement.query(By.css('#apiKey'));
-		const textareaContent = debugElement.query(By.css('#transText'))
-			.nativeElement;
+		const textareaContent = debugElement.query(
+			By.css('#transText')
+		).nativeElement;
 
 		expect(apiKeyField).toBeFalsy();
 		expect(textareaContent.value).toEqual(MatDialogDataMock.translationText);

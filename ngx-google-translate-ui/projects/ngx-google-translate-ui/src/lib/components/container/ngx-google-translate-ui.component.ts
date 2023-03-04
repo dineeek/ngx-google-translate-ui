@@ -1,11 +1,12 @@
 import { Component, Inject, OnInit, Optional } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { GoogleTranslateDialogModel } from '../models/google-translate-dialog.model';
-import { GoogleTranslationBodyModel } from '../models/google-translation.model';
-import { GoogleTranslationService } from '../util/google-translation.service';
-import { LANGS, POPULAR_LANGS } from '../util/languages';
-import { CloudCredentialsMessage } from '../util/tooltips-messages';
+import { LANGS, POPULAR_LANGS, CloudCredentialsMessage } from '../../meta';
+import {
+	GoogleTranslateDialogModel,
+	GoogleTranslationBodyModel
+} from '../../models';
+import { GoogleTranslationService } from '../../services';
 
 @Component({
 	selector: 'lib-ngx-google-translate-ui',
@@ -13,35 +14,35 @@ import { CloudCredentialsMessage } from '../util/tooltips-messages';
 	styleUrls: ['./ngx-google-translate-ui.component.scss']
 })
 export class NgxGoogleTranslateUiComponent implements OnInit {
-	public readonly languages = LANGS;
-	public readonly popularLanguages = POPULAR_LANGS;
+	readonly languages = LANGS;
+	readonly popularLanguages = POPULAR_LANGS;
 
-	public cloudCredentialsTooltip = CloudCredentialsMessage;
+	cloudCredentialsTooltip = CloudCredentialsMessage;
 
-	public translations: { [key: string]: string } = {};
-	public emptyTranslationsFlag = true; // delete and look at translations
+	translations: { [key: string]: string } = {};
+	emptyTranslationsFlag = true; // delete and look at translations
 
-	public multiTranslateForm = new FormGroup({
+	multiTranslateForm = new FormGroup({
 		apiKey: new FormControl('', Validators.required),
 		translationText: new FormControl('', Validators.required),
 		targetLangs: new FormControl([], Validators.required),
 		popularLangsToggle: new FormControl(false)
 	});
 
-	get apiKey() {
-		return this.multiTranslateForm.get('apiKey');
+	get apiKey(): FormControl {
+		return this.multiTranslateForm.get('apiKey') as FormControl;
 	}
 
-	get translationText() {
-		return this.multiTranslateForm.get('translationText');
+	get translationText(): FormControl {
+		return this.multiTranslateForm.get('translationText') as FormControl;
 	}
 
-	get targetLangs() {
-		return this.multiTranslateForm.get('targetLangs');
+	get targetLangs(): FormControl {
+		return this.multiTranslateForm.get('targetLangs') as FormControl;
 	}
 
-	get popularLangsToggle() {
-		return this.multiTranslateForm.get('popularLangsToggle');
+	get popularLangsToggle(): FormControl {
+		return this.multiTranslateForm.get('popularLangsToggle') as FormControl;
 	}
 
 	originalOrder = (): number => {
@@ -56,13 +57,15 @@ export class NgxGoogleTranslateUiComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		if (this.dialogData) {
-			this.apiKey?.setValue(this.dialogData.apiKey);
-
-			this.dialogData.translationText
-				? this.translationText?.setValue(this.dialogData.translationText)
-				: this.translationText?.setValue('');
+		if (!this.dialogData) {
+			return;
 		}
+
+		this.apiKey.setValue(this.dialogData.apiKey);
+
+		this.dialogData.translationText
+			? this.translationText.setValue(this.dialogData.translationText)
+			: this.translationText.setValue('');
 	}
 
 	/**
@@ -71,13 +74,13 @@ export class NgxGoogleTranslateUiComponent implements OnInit {
 	onSearch(): void {
 		this.translations = {};
 
-		this.targetLangs?.value.forEach(async (targetLang: string) => {
+		this.targetLangs.value.forEach(async (targetLang: string) => {
 			const body: GoogleTranslationBodyModel = {
-				q: this.translationText?.value,
+				q: this.translationText.value,
 				target: targetLang
 			};
 			const translation = await this.googleService
-				.getTranslations(this.apiKey?.value, body)
+				.getTranslations(this.apiKey.value, body)
 				.toPromise();
 
 			if (translation) {
@@ -93,8 +96,8 @@ export class NgxGoogleTranslateUiComponent implements OnInit {
 	 * @returns void - Resets the input value in textarea and selected target languages.
 	 */
 	onReset(): void {
-		this.translationText?.reset('');
-		this.targetLangs?.reset([]);
+		this.translationText.reset('');
+		this.targetLangs.reset([]);
 
 		this.translations = {};
 		this.emptyTranslationsFlag = true;

@@ -18,13 +18,15 @@ export class TranslationResultsComponent {
 	 * @returns void - Shows the message to the user.
 	 */
 	openSnackBar(lang?: string): void {
-		lang
-			? this.snackBar.open(`Copied translation for ${lang} language!`, 'X', {
-					duration: 5000
-			  })
-			: this.snackBar.open(`Copied translation for all languages!`, 'X', {
-					duration: 5000
-			  });
+		this.snackBar.open(
+			lang
+				? `Copied translation for all languages!`
+				: `Copied translation for all languages!`,
+			'X',
+			{
+				duration: 5000
+			}
+		);
 	}
 
 	/**

@@ -21,6 +21,10 @@ An Angular Material UI for Google Translate based on Cloud Translation API.
 
 **[View live demo on StackBlitz.](https://ngx-google-translate-ui.stackblitz.io)**
 
+<p align="center">
+![Translator UI](https://github.com/dineeek/ngx-google-translate-ui/blob/main/assets/ngx-google-translate-ui.png?raw=true)
+</p>
+
 # Install
 
 ```shell
@@ -35,21 +39,22 @@ To use this library you need to provide Google API key.
 
 Process of translation is analog as in the real Google translator.
 
-![Translator UI](https://github.com/dineeek/ngx-google-translate-ui/blob/main/assets/ngx-google-translate-ui.png?raw=true)
-
 The output of translation can be separately copied to clipboard or it can be
 copied as raw JSON data.
 
-This library can be used in your project as a dialog component. Provide data as
-type of `GoogleTranslateDialogModel` - property Google API key as required and
-translation text as optional. When API key is provided, the input field it will
-be hidden. Otherwise, the API key input field will be visible.
+This library can be used in your project also as a dialog component.
+
+Provide data as type of `GoogleTranslateDialogModel` - property Google API key
+as required and translation text as optional.
+
+When API key is provided, the input field it will be hidden. Otherwise, the API
+key input field will be visible.
 
 ```typescript
 
 import { NgxGoogleTranslateUiComponent } from 'ngx-google-translate-ui';
 
-openDialog () {
+openDialog() {
   const dialogConfig: GoogleTranslateDialogModel = {
     apiKey: 'YOUR_GOOGLE_API_KEY',
     translationText: 'My hand is broken!'

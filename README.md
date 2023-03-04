@@ -40,10 +40,9 @@ Process of translation is analog as in the real Google translator.
 The output of translation can be separately copied to clipboard or it can be
 copied as raw JSON data.
 
-This library can be used in your project as a dialog component. Provide data as
-type of `GoogleTranslateDialogModel` - property Google API key as required and
-translation text as optional. When API key is provided, the input field it will
-be hidden. Otherwise, the API key input field will be visible.
+This library can be used in your project as a dialog component.
+Provide data as type of `GoogleTranslateDialogModel` - property Google API key as required and translation text as optional.
+When API key is provided, the input field it willbe hidden. Otherwise, the API key input field will be visible.
 
 ```typescript
 

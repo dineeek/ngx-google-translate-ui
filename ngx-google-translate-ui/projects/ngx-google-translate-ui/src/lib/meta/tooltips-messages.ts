@@ -1,4 +1,4 @@
-export const CloudCredentialsMessage = `
+export const CLOUD_CREDENTIALS_TOOLTIP_MSG = `
 To get an API key:\n
     1. Go to the Google Cloud Console.\n
     2. Click the project drop-down and select or create the project for which you want to add an API key.\n

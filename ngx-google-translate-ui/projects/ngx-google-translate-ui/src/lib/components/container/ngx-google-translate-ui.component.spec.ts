@@ -125,7 +125,7 @@ describe('NgxGoogleTranslateUiComponent', () => {
 		expect(textarea.value).toContain('Hello world')
 		expect(dropdown.value).toEqual(['de'])
 
-		expect(component.multiTranslateForm.valid).toBeTruthy()
+		expect(component.formGroup.valid).toBeTruthy()
 		expect(component.translations).toEqual({})
 
 		searchButton.click()
@@ -155,7 +155,6 @@ describe('NgxGoogleTranslateUiComponent', () => {
 
 		expect(Object.keys(component.translations)).toContain('German')
 		expect(Object.values(component.translations)).toContain('Hallo Welt')
-		expect(component.emptyTranslationsFlag).toEqual(false)
 
 		fixture.detectChanges()
 
@@ -269,7 +268,7 @@ describe('NgxGoogleTranslateUiComponent as a dialog', () => {
 		expect(textarea.value).toContain(MatDialogDataMock.translationText)
 		expect(dropdown.value).toEqual(['de'])
 
-		expect(component.multiTranslateForm.valid).toBeTruthy()
+		expect(component.formGroup.valid).toBeTruthy()
 		expect(component.translations).toEqual({})
 
 		searchButton.click()

@@ -1,11 +1,16 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core'
+import {
+	ChangeDetectionStrategy,
+	Component,
+	Input,
+	ViewEncapsulation
+} from '@angular/core'
 import { MatSnackBar } from '@angular/material/snack-bar'
 
 @Component({
 	selector: 'lib-google-translation-results',
 	templateUrl: './translation-results.component.html',
 	styleUrls: ['./translation-results.component.scss'],
-	encapsulation: ViewEncapsulation.None
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TranslationResultsComponent {
 	@Input()

@@ -1,33 +1,31 @@
-<div class="results-container">
-	<mat-list *ngFor="let translation of translations | keyvalue">
-		<mat-list-item>
-			<span class="span-padding">
-				<p class="paragraph-text">{{ translation.key }}:</p>
-				{{ translation.value }}
-			</span>
+<mat-list *ngFor="let translation of translations | keyvalue">
+	<mat-list-item>
+		<span class="spacer">
+			<p class="paragraph-text">{{ translation.key }}:</p>
+			{{ translation.value }}
+		</span>
 
-			<button mat-icon-button>
-				<mat-icon
-					matListIcon
-					class="clipboard-copy"
-					matTooltip="Copy translation"
-					[cdkCopyToClipboard]="translation.value"
-					(click)="openSnackBar(translation.key)"
-					>content_copy</mat-icon
-				>
-			</button>
-		</mat-list-item>
-	</mat-list>
-
-	<div class="copy-all">
-		<button
-			mat-icon-button
-			color="primary"
-			[cdkCopyToClipboard]="onCopyAll()"
-			(click)="openSnackBar(null)"
-			matTooltip="Copy all translated data"
-		>
-			<mat-icon>copy_all</mat-icon>
+		<button mat-icon-button>
+			<mat-icon
+				matListIcon
+				class="clipboard-copy"
+				matTooltip="Copy translation"
+				[cdkCopyToClipboard]="translation.value"
+				(click)="openSnackBar(translation.key)"
+				>content_copy</mat-icon
+			>
 		</button>
-	</div>
+	</mat-list-item>
+</mat-list>
+
+<div class="copy-all">
+	<button
+		mat-icon-button
+		color="primary"
+		[cdkCopyToClipboard]="onCopyAll()"
+		(click)="openSnackBar()"
+		matTooltip="Copy all translated data"
+	>
+		<mat-icon>copy_all</mat-icon>
+	</button>
 </div>

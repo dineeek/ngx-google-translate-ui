@@ -1,7 +1,13 @@
-import { Component, Inject, OnInit, Optional } from '@angular/core'
+import {
+	ChangeDetectionStrategy,
+	Component,
+	Inject,
+	OnInit,
+	Optional
+} from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { MAT_DIALOG_DATA } from '@angular/material/dialog'
-import { LANGS, POPULAR_LANGS, CloudCredentialsMessage } from '../../meta'
+import { LANGS, POPULAR_LANGS, CLOUD_CREDENTIALS_TOOLTIP_MSG } from '../../meta'
 import {
 	GoogleTranslateDialogModel,
 	GoogleTranslationBodyModel
@@ -11,18 +17,17 @@ import { GoogleTranslationService } from '../../services'
 @Component({
 	selector: 'lib-ngx-google-translate-ui',
 	templateUrl: './ngx-google-translate-ui.component.html',
-	styleUrls: ['./ngx-google-translate-ui.component.scss']
+	styleUrls: ['./ngx-google-translate-ui.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NgxGoogleTranslateUiComponent implements OnInit {
-	readonly languages = LANGS
-	readonly popularLanguages = POPULAR_LANGS
-
-	cloudCredentialsTooltip = CloudCredentialsMessage
+	readonly ALL_LANGS = LANGS
+	readonly POPULAR_LANGS = POPULAR_LANGS
+	readonly CLOUD_CRED_TOOLTIP_MSG = CLOUD_CREDENTIALS_TOOLTIP_MSG
 
 	translations: { [key: string]: string } = {}
-	emptyTranslationsFlag = true // delete and look at translations
 
-	multiTranslateForm = new FormGroup({
+	formGroup = new FormGroup({
 		apiKey: new FormControl('', Validators.required),
 		translationText: new FormControl('', Validators.required),
 		targetLangs: new FormControl([], Validators.required),
@@ -30,19 +35,19 @@ export class NgxGoogleTranslateUiComponent implements OnInit {
 	})
 
 	get apiKey(): FormControl {
-		return this.multiTranslateForm.get('apiKey') as FormControl
+		return this.formGroup.get('apiKey') as FormControl
 	}
 
 	get translationText(): FormControl {
-		return this.multiTranslateForm.get('translationText') as FormControl
+		return this.formGroup.get('translationText') as FormControl
 	}
 
 	get targetLangs(): FormControl {
-		return this.multiTranslateForm.get('targetLangs') as FormControl
+		return this.formGroup.get('targetLangs') as FormControl
 	}
 
 	get popularLangsToggle(): FormControl {
-		return this.multiTranslateForm.get('popularLangsToggle') as FormControl
+		return this.formGroup.get('popularLangsToggle') as FormControl
 	}
 
 	originalOrder = (): number => {
@@ -62,10 +67,7 @@ export class NgxGoogleTranslateUiComponent implements OnInit {
 		}
 
 		this.apiKey.setValue(this.dialogData.apiKey)
-
-		this.dialogData.translationText
-			? this.translationText.setValue(this.dialogData.translationText)
-			: this.translationText.setValue('')
+		this.translationText.setValue(this.dialogData.translationText ?? '')
 	}
 
 	/**
@@ -86,8 +88,6 @@ export class NgxGoogleTranslateUiComponent implements OnInit {
 			if (translation) {
 				this.translations[LANGS[targetLang.toLowerCase()]] =
 					translation.translatedText
-
-				this.emptyTranslationsFlag = false
 			}
 		})
 	}
@@ -98,9 +98,7 @@ export class NgxGoogleTranslateUiComponent implements OnInit {
 	onReset(): void {
 		this.translationText.reset('')
 		this.targetLangs.reset([])
-
 		this.translations = {}
-		this.emptyTranslationsFlag = true
 	}
 
 	/**

@@ -1,11 +1,11 @@
-.results-container {
-	.span-padding {
-		padding-bottom: 10px !important;
+:host {
+	.spacer {
+		padding-bottom: 10px;
 	}
 
 	.paragraph-text {
-		letter-spacing: 0.25px !important;
-		font-weight: 500 !important;
+		letter-spacing: 0.25px;
+		font-weight: 500;
 	}
 
 	.clipboard-copy {
@@ -18,15 +18,15 @@
 		justify-content: center;
 	}
 
-	.mat-list-base {
+	::ng-deep .mat-list-base {
 		border-bottom: 1px solid;
 	}
 
-	.mat-list-item .mat-list-item-content {
+	::ng-deep .mat-list-item .mat-list-item-content {
 		justify-content: space-between;
 	}
 
-	.mat-list-base .mat-list-item.mat-list-item-with-avatar,
+	::ng-deep .mat-list-base .mat-list-item.mat-list-item-with-avatar,
 	.mat-list-base .mat-list-option.mat-list-item-with-avatar {
 		height: fit-content !important;
 	}

@@ -2,32 +2,30 @@
 {
 	"compileOnSave": false,
 	"compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "sourceMap": true,
-    "declaration": false,
-    "downlevelIteration": true,
-    "paths": {
-      "ngx-google-translate-ui": [
-        "dist/ngx-google-translate-ui/ngx-google-translate-ui",
-        "dist/ngx-google-translate-ui"
-      ]
-    },
-    "experimentalDecorators": true,
-    "moduleResolution": "node",
-    "importHelpers": true,
-    "target": "ES2022",
-    "module": "es2020",
-    "lib": [
-      "es2018",
-      "dom"
-    ],
-    "useDefineForClassFields": false
-  },
+		"baseUrl": "./",
+		"outDir": "./dist/out-tsc",
+		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"sourceMap": true,
+		"declaration": false,
+		"downlevelIteration": true,
+		"paths": {
+			"ngx-google-translate-ui": [
+				"dist/ngx-google-translate-ui/ngx-google-translate-ui",
+				"dist/ngx-google-translate-ui"
+			]
+		},
+		"experimentalDecorators": true,
+		"moduleResolution": "node",
+		"importHelpers": true,
+		"target": "ES2022",
+		"module": "es2020",
+		"lib": ["es2018", "dom"],
+		"esModuleInterop": true,
+		"useDefineForClassFields": false
+	},
 	"angularCompilerOptions": {
 		"enableI18nLegacyMessageIdFormat": false,
 		"strictInjectionParameters": true,

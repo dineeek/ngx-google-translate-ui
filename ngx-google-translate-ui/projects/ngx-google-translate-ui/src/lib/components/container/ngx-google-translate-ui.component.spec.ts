@@ -17,19 +17,14 @@ import { TranslationResultsComponent } from './../translation-results/translatio
 import { GoogleTranslationService } from '../../services'
 import { GoogleTranslateDialogModel } from '../../models'
 
-export const GoogleServiceResponseMock = {
+const GoogleServiceResponseMock = {
 	translatedText: 'Hallo Welt',
 	detectedSourceLanguage: 'en'
 }
 
-export const MatDialogDataMock: GoogleTranslateDialogModel = {
+const MatDialogDataMock: GoogleTranslateDialogModel = {
 	apiKey: 'jkaskjd215najsndkj14asn',
 	translationText: 'Hello World!'
-}
-
-export const GoogleTranslationMock = {
-	Croatian: 'Pozdrav svijete!',
-	Deutsche: 'Hallo Welt!'
 }
 
 describe('NgxGoogleTranslateUiComponent', () => {

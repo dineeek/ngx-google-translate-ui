@@ -5,7 +5,7 @@ import { MatLegacyListModule as MatListModule } from '@angular/material/legacy-l
 import { MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar'
 import { TranslationResultsComponent } from './translation-results.component'
 
-export const GoogleTranslationMock = {
+const GoogleTranslationMock = {
 	Croatian: 'Pozdrav svijete!',
 	Deutsche: 'Hallo Welt!'
 }

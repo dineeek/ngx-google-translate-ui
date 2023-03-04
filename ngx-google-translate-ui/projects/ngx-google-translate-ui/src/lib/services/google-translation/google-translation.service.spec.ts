@@ -4,7 +4,7 @@ import { of } from 'rxjs'
 import { GoogleTranslationBodyModel } from '../../models/google-translation.model'
 import { GoogleTranslationService } from './google-translation.service'
 
-export const GoogleServiceResponseMock = {
+const GoogleServiceResponseMock = {
 	translatedText: 'Hallo Welt',
 	detectedSourceLanguage: 'en'
 }

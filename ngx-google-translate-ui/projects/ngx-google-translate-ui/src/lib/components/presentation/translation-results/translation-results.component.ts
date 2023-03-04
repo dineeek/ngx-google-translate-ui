@@ -1,10 +1,5 @@
-import {
-	ChangeDetectionStrategy,
-	Component,
-	Input,
-	ViewEncapsulation
-} from '@angular/core'
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar'
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 @Component({
 	selector: 'lib-google-translation-results',

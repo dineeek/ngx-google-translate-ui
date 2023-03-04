@@ -9,6 +9,6 @@ export {
 	GoogleTranslation,
 	GoogleTranslationBodyModel
 } from './lib/models/google-translation.model'
-export { GoogleTranslationService } from './lib/services/google-translation/google-translation.service'
+export { GoogleTranslationService } from './lib/services/google-translation.service'
 
 export { GoogleTranslateDialogModel } from './lib/models/google-translate-dialog.model'

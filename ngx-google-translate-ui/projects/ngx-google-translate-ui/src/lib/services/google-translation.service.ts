@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar'
+import { MatSnackBar } from '@angular/material/snack-bar'
 import { Observable, of, throwError } from 'rxjs'
 import { catchError, map } from 'rxjs/operators'
-import { GoogleTranslationBodyModel, GoogleTranslation } from '../../models'
+import { GoogleTranslationBodyModel, GoogleTranslation } from '../models'
 
 @Injectable({ providedIn: 'root' })
 export class GoogleTranslationService {

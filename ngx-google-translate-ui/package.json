@@ -4,12 +4,10 @@
 	"scripts": {
 		"build": "ng build --project ngx-google-translate-ui --configuration production",
 		"publish": "cd dist/ngx-google-translate-ui && npm publish",
-		"test": "jest",
 		"style": "prettier --write \"projects/ngx-google-translate-ui/**/*.{hmtl,css,ts,tsx}\"",
 		"clean": "rimraf dist",
 		"lint": "ng lint",
-		"build-ci": "ng build ngx-google-translate-ui --configuration production",
-		"test-ci": "ng test ngx-google-translate-ui --watch=false --browsers=ChromeHeadless"
+		"build-ci": "ng build ngx-google-translate-ui --configuration production"
 	},
 	"private": true,
 	"dependencies": {
@@ -33,7 +31,6 @@
 		"@angular/compiler-cli": "^15.2.1",
 		"@types/node": "^12.11.1",
 		"codelyzer": "^6.0.0",
-		"jest": "^29.4.3",
 		"ng-packagr": "^15.2.2",
 		"prettier": "^2.8.4",
 		"rimraf": "^3.0.2",

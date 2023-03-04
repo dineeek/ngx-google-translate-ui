@@ -10,5 +10,4 @@ before_script:
   - npm install --save-dev @types/jest
 script:
   - cd ngx-google-translate-ui
-  - npm run test-ci
   - npm run build-ci

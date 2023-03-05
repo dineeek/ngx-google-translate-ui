@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { Observable, of, throwError } from 'rxjs'
@@ -24,7 +24,8 @@ export class GoogleTranslationService {
 	getTranslation$(
 		apiKey: string,
 		targetLang: string,
-		text: string
+		text: string,
+		errorCallback?: () => Observable<any>
 	): Observable<IGoogleTranslationResponse> {
 		const requestBody: IGoogleTranslationRequest = {
 			q: text,
@@ -39,17 +40,25 @@ export class GoogleTranslationService {
 						response.data.translations[0].detectedSourceLanguage
 				} as IGoogleTranslationResponse
 			}),
-			catchError(error => {
-				this.snackBar.open(
-					`Something went wrong on contacting Cloud Translation API!`,
-					'X',
-					{
-						duration: 5000
-					}
-				)
-
-				return throwError(() => error)
+			catchError((error: HttpErrorResponse) => {
+				return errorCallback
+					? errorCallback()
+					: this.showErrorSnackbarMessage(error)
 			})
 		)
+	}
+
+	private showErrorSnackbarMessage(
+		error: HttpErrorResponse
+	): Observable<never> {
+		this.snackBar.open(
+			`Something went wrong on contacting Cloud Translation API!`,
+			'X',
+			{
+				duration: 5000
+			}
+		)
+
+		return throwError(() => error)
 	}
 }

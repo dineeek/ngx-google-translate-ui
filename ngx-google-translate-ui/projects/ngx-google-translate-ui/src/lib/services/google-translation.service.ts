@@ -16,17 +16,19 @@ export class GoogleTranslationService {
 
 	/**
 	 * @param   apiKey - User's Google API key.
-	 * @param   transBody - Body to use in POST method.
-	 * @returns Observable - Fetched translations as Observable of type GoogleTranslation.
+	 * @param   targetLang - Language code used in translation.
+	 * @param   text - Text to translate.
+	 *
+	 * @returns Observable - Returns text translated into target language.
 	 */
 	getTranslation$(
 		apiKey: string,
-		target: string,
+		targetLang: string,
 		text: string
 	): Observable<IGoogleTranslationResponse> {
 		const requestBody: IGoogleTranslationRequest = {
 			q: text,
-			target
+			target: targetLang
 		}
 
 		return this.httpClient.post(`${BASE_URL}${apiKey}`, requestBody).pipe(

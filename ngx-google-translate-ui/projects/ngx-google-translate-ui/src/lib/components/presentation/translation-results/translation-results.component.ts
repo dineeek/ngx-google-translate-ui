@@ -14,18 +14,16 @@ export class TranslationResultsComponent {
 
 	constructor(private snackBar: MatSnackBar) {}
 
-	/**
-	 * @param  lang - Language code.
-	 * @returns void - Shows the message to the user.
-	 */
 	openSnackBar(lang?: string): void {
 		this.snackBar.open(
 			lang
-				? `Copied translation for all languages!`
-				: `Copied translation for all languages!`,
+				? `Copied translation for ${lang} language.`
+				: `Copied translation for all languages.`,
 			'X',
 			{
-				duration: 5000
+				horizontalPosition: 'left',
+				verticalPosition: 'bottom',
+				duration: 4000
 			}
 		)
 	}

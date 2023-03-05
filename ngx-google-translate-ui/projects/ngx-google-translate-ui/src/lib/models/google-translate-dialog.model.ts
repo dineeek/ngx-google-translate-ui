@@ -1,4 +1,4 @@
 export interface INgxGoogleTranslateUiDialogData {
-	apiKey: string
+	googleApiKey: string
 	translationText: string
 }

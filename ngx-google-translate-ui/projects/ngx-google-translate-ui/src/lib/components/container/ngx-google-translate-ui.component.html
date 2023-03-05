@@ -1,37 +1,39 @@
 <mat-card class="container">
 	<mat-card-header>
-		<mat-card-title>Translator</mat-card-title>
+		<mat-card-title>Google Multi Translator</mat-card-title>
 		<mat-card-subtitle>Cloud Translation API</mat-card-subtitle>
 	</mat-card-header>
 
 	<mat-card-content>
-		<div [formGroup]="formGroup">
-			<div *ngIf="!dialogData?.apiKey">
-				<mat-form-field class="w-60" appearance="fill">
-					<mat-label>Google API key</mat-label>
-					<input
-						id="apiKey"
-						matInput
-						formControlName="apiKey"
-						placeholder="Google API key"
-					/>
-					<mat-icon
-						matSuffix
-						class="cloud-credentials"
-						(click)="onCloudCredentialsHelpClick($event)"
-						[matTooltip]="CLOUD_CRED_TOOLTIP_MSG"
-						matTooltipPosition="below"
-					>
-						help_outline
-					</mat-icon>
-					<mat-error *ngIf="apiKey.invalid"
-						>Required to fetch translations!</mat-error
-					>
-				</mat-form-field>
-			</div>
+		<form [formGroup]="formGroup">
+			<mat-form-field
+				class="w-85"
+				appearance="fill"
+				*ngIf="!dialogData?.googleApiKey"
+			>
+				<mat-label>Google API key</mat-label>
+				<input
+					id="apiKey"
+					matInput
+					formControlName="apiKey"
+					placeholder="Google API key"
+				/>
+				<mat-icon
+					matSuffix
+					class="cloud-credentials"
+					(click)="onCloudCredentialsHelpClick($event)"
+					[matTooltip]="CLOUD_CRED_TOOLTIP_MSG"
+					matTooltipPosition="below"
+				>
+					help_outline
+				</mat-icon>
+				<mat-error *ngIf="apiKey.invalid"
+					>Required to fetch translations!</mat-error
+				>
+			</mat-form-field>
 
 			<mat-form-field
-				[ngClass]="{ 'full-width': true, 'pt-10': !dialogData?.apiKey }"
+				[ngClass]="{ 'full-width': true, 'pt-10': !dialogData?.googleApiKey }"
 				appearance="fill"
 			>
 				<mat-label>Insert text</mat-label>
@@ -78,12 +80,24 @@
 				>
 			</mat-form-field>
 
-			<mat-slide-toggle formControlName="onlyPopularLangs"
+			<mat-slide-toggle
+				formControlName="onlyPopularLangs"
+				(change)="onPopularLangsChange()"
 				>Only popular languages</mat-slide-toggle
 			>
-		</div>
+		</form>
 	</mat-card-content>
+
 	<mat-card-actions align="end" class="actions">
+		<button
+			id="reset"
+			mat-raised-button
+			(click)="onReset()"
+			matTooltip="Clear input and selected languages"
+		>
+			Reset
+		</button>
+
 		<button
 			id="search"
 			mat-raised-button
@@ -93,15 +107,6 @@
 			matTooltip="Fetch translations"
 		>
 			Translate
-		</button>
-
-		<button
-			id="reset"
-			mat-raised-button
-			(click)="onReset()"
-			matTooltip="Clear input and selected languages"
-		>
-			Reset
 		</button>
 	</mat-card-actions>
 

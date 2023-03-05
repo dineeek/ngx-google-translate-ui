@@ -15,7 +15,7 @@ export class AppComponent {
 
 	openTranslationDialog() {
 		const dialogConfig: GoogleTranslateDialogModel = {
-			apiKey: 'asdfnasfn',
+			googleApiKey: 'asdfnasfn',
 			translationText: 'My dialog translation'
 		}
 		this.dialog.open(NgxGoogleTranslateUiComponent, {

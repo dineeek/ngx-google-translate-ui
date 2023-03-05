@@ -7,11 +7,11 @@
 	.translations {
 		padding: 0 16px;
 
-		.language {
+		&__language {
 			padding-bottom: 8px;
 		}
 
-		.result {
+		&__result {
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
@@ -20,13 +20,7 @@
 		}
 	}
 
-	.clipboard-copy {
-		cursor: pointer;
-		color: lightslategray;
-	}
-
 	.copy-all {
-		display: flex;
-		justify-content: center;
+		align-self: center;
 	}
 }

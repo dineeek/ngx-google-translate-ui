@@ -7,12 +7,9 @@ import {
 } from '@angular/core'
 import { FormControl, NonNullableFormBuilder, Validators } from '@angular/forms'
 import { MAT_DIALOG_DATA } from '@angular/material/dialog'
-import { forkJoin, map, Observable, Subject, switchMap, take } from 'rxjs'
-import { LANGS, POPULAR_LANGS, CLOUD_CREDENTIALS_TOOLTIP_MSG } from '../../meta'
-import {
-	INgxGoogleTranslateUiDialogData,
-	IGoogleTranslationRequest
-} from '../../models'
+import { forkJoin, map, Observable, of, Subject, switchMap } from 'rxjs'
+import { CLOUD_CREDENTIALS_TOOLTIP_MSG, LANGS, POPULAR_LANGS } from '../../meta'
+import { INgxGoogleTranslateUiDialogData } from '../../models'
 import { GoogleTranslationService } from '../../services/google-translation.service'
 
 export interface NgxGoogleTranslateUiForm {
@@ -38,7 +35,7 @@ export class NgxGoogleTranslateUiComponent implements OnInit {
 	readonly POPULAR_LANGS = POPULAR_LANGS
 	readonly CLOUD_CRED_TOOLTIP_MSG = CLOUD_CREDENTIALS_TOOLTIP_MSG
 
-	translations$: Observable<ITranslationResult[]> | undefined
+	translations$: Observable<ITranslationResult[] | undefined> | undefined
 
 	formGroup = this.formBuilder.group<NgxGoogleTranslateUiForm>({
 		apiKey: this.formBuilder.control('', Validators.required),
@@ -47,7 +44,7 @@ export class NgxGoogleTranslateUiComponent implements OnInit {
 		onlyPopularLangs: this.formBuilder.control(false)
 	})
 
-	private search$ = new Subject<void>()
+	private search$ = new Subject<boolean>()
 
 	get apiKey(): FormControl<string> {
 		return this.formGroup.controls.apiKey
@@ -84,15 +81,21 @@ export class NgxGoogleTranslateUiComponent implements OnInit {
 			return
 		}
 
-		this.apiKey.setValue(this.dialogData?.apiKey ?? '')
-		this.translationText.setValue(this.dialogData?.translationText ?? '')
+		this.formGroup.patchValue({
+			apiKey: this.dialogData.googleApiKey,
+			translationText: this.dialogData.translationText
+		})
+	}
+
+	onPopularLangsChange(): void {
+		this.targetLangs.reset([])
 	}
 
 	/**
 	 * @returns void - Fetches the translations from Cloud Translation API using the provided API key.
 	 */
 	onSearch(): void {
-		this.search$.next()
+		this.search$.next(true)
 	}
 
 	/**
@@ -101,7 +104,7 @@ export class NgxGoogleTranslateUiComponent implements OnInit {
 	onReset(): void {
 		this.translationText.reset('')
 		this.targetLangs.reset([])
-		//this.translations$.next([]) - TODO
+		this.search$.next(false)
 	}
 
 	/**
@@ -113,14 +116,18 @@ export class NgxGoogleTranslateUiComponent implements OnInit {
 		window.open('https://console.cloud.google.com/', 'parent')
 	}
 
-	private setTranslationSearch$(): Observable<ITranslationResult[]> {
+	private setTranslationSearch$(): Observable<
+		ITranslationResult[] | undefined
+	> {
 		return this.search$.pipe(
-			switchMap(() =>
-				this.getTranslations$(
-					this.apiKey.value,
-					this.targetLangs.value,
-					this.translationText.value
-				)
+			switchMap(search =>
+				search
+					? this.getTranslations$(
+							this.apiKey.value,
+							this.targetLangs.value,
+							this.translationText.value
+					  )
+					: of(undefined)
 			)
 		)
 	}

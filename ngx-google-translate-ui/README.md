@@ -1,6 +1,7 @@
 # ngx-google-translate-ui
 
-Angular Material UI library for Google Translate based on Cloud Translation API.
+Angular Material UI library for Google Translate based on Google Cloud
+Translation API.
 
 <p align="start">
     <a href="https://travis-ci.com/dineeek/ngx-google-translate-ui"><img src="https://travis-ci.com/dineeek/ngx-google-translate-ui.svg?token=YSspYgvLPX2y3Q9zRFxp&branch=main" /></a>
@@ -24,7 +25,7 @@ Angular Material UI library for Google Translate based on Cloud Translation API.
 **[View live demo on StackBlitz](https://ngx-google-translate-ui.stackblitz.io)**
 
 <p align="center">
-  <img src="https://github.com/dineeek/ngx-google-translate-ui/blob/main/assets/ngx-google-translate-ui.png" alt="Google translate" />
+  <img src="https://github.com/dineeek/ngx-google-translate-ui/blob/main/ngx-google-translate-ui/assets/ngx-google-translate-ui.png" alt="Google translate" />
 </p>
 
 # Install

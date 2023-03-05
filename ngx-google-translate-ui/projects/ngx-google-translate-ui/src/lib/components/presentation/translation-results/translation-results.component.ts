@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 import { MatSnackBar } from '@angular/material/snack-bar'
-import { ITranslationResult } from '../../container/ngx-google-translate-ui.component'
+import { ITranslationResultUi } from '../../../models'
 
 @Component({
 	selector: 'ngx-google-translation-results',
@@ -10,7 +10,7 @@ import { ITranslationResult } from '../../container/ngx-google-translate-ui.comp
 })
 export class TranslationResultsComponent {
 	@Input()
-	translationResult: ITranslationResult[] = []
+	translationResult: ITranslationResultUi[] = []
 
 	constructor(private snackBar: MatSnackBar) {}
 

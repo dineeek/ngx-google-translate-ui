@@ -8,14 +8,12 @@ import {
 import { MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { forkJoin, map, Observable, of, Subject, switchMap } from 'rxjs'
 import { LANGS } from '../../meta'
-import { INgxGoogleTranslateUiDialogData } from '../../models'
+import {
+	INgxGoogleTranslateUiDialogData,
+	ITranslationResultUi
+} from '../../models'
 import { GoogleTranslationService } from '../../services/google-translation.service'
 import { NgxGoogleTranslateUiFormService } from '../form'
-
-export interface ITranslationResult {
-	language: string
-	translation: string
-}
 
 @Component({
 	selector: 'ngx-google-translate-ui',
@@ -25,7 +23,7 @@ export interface ITranslationResult {
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NgxGoogleTranslateUiComponent implements OnInit {
-	translations$: Observable<ITranslationResult[] | undefined> | undefined
+	translations$: Observable<ITranslationResultUi[] | undefined> | undefined
 	formGroup = this.formService.createFormGroup()
 
 	private search$ = new Subject<boolean>()
@@ -65,14 +63,14 @@ export class NgxGoogleTranslateUiComponent implements OnInit {
 	}
 
 	private setTranslationSearch$(): Observable<
-		ITranslationResult[] | undefined
+		ITranslationResultUi[] | undefined
 	> {
 		return this.search$.pipe(
 			switchMap(search => (search ? this.getTranslations$() : of(undefined)))
 		)
 	}
 
-	private getTranslations$(): Observable<ITranslationResult[]> {
+	private getTranslations$(): Observable<ITranslationResultUi[]> {
 		const { apiKey, targetLangs, translationText } =
 			this.formGroup.getRawValue()
 

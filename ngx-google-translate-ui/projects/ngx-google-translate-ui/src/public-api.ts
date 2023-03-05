@@ -6,9 +6,9 @@ export { NgxGoogleTranslateUiComponent } from './lib/components/container/ngx-go
 export { NgxGoogleTranslateUiModule } from './lib/ngx-google-translate-ui.module'
 
 export {
-	IGoogleTranslationResponse as GoogleTranslation,
-	IGoogleTranslationRequest as GoogleTranslationBodyModel
+	IGoogleTranslationResponse,
+	IGoogleTranslationRequest
 } from './lib/models/google-translation.model'
 export { GoogleTranslationService } from './lib/services/google-translation.service'
 
-export { INgxGoogleTranslateUiDialogData as GoogleTranslateDialogModel } from './lib/models/google-translate-dialog.model'
+export { INgxGoogleTranslateUiDialogData } from './lib/models/google-translate-dialog.model'

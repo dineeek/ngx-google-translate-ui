@@ -5,19 +5,12 @@ import {
 	OnInit,
 	Optional
 } from '@angular/core'
-import { FormControl, NonNullableFormBuilder, Validators } from '@angular/forms'
 import { MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { forkJoin, map, Observable, of, Subject, switchMap } from 'rxjs'
 import { CLOUD_CREDENTIALS_TOOLTIP_MSG, LANGS, POPULAR_LANGS } from '../../meta'
 import { INgxGoogleTranslateUiDialogData } from '../../models'
 import { GoogleTranslationService } from '../../services/google-translation.service'
-
-export interface NgxGoogleTranslateUiForm {
-	apiKey: FormControl<string>
-	translationText: FormControl<string>
-	targetLangs: FormControl<string[]>
-	onlyPopularLangs: FormControl<boolean>
-}
+import { NgxGoogleTranslateUiFormService } from '../form'
 
 export interface ITranslationResult {
 	language: string
@@ -28,6 +21,7 @@ export interface ITranslationResult {
 	selector: 'lib-ngx-google-translate-ui',
 	templateUrl: './ngx-google-translate-ui.component.html',
 	styleUrls: ['./ngx-google-translate-ui.component.scss'],
+	providers: [NgxGoogleTranslateUiFormService],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NgxGoogleTranslateUiComponent implements OnInit {
@@ -36,38 +30,16 @@ export class NgxGoogleTranslateUiComponent implements OnInit {
 	readonly CLOUD_CRED_TOOLTIP_MSG = CLOUD_CREDENTIALS_TOOLTIP_MSG
 
 	translations$: Observable<ITranslationResult[] | undefined> | undefined
-
-	formGroup = this.formBuilder.group<NgxGoogleTranslateUiForm>({
-		apiKey: this.formBuilder.control('', Validators.required),
-		translationText: this.formBuilder.control('', Validators.required),
-		targetLangs: this.formBuilder.control([], Validators.required),
-		onlyPopularLangs: this.formBuilder.control(false)
-	})
+	formGroup = this.formService.createFormGroup()
 
 	private search$ = new Subject<boolean>()
-
-	get apiKey(): FormControl<string> {
-		return this.formGroup.controls.apiKey
-	}
-
-	get translationText(): FormControl<string> {
-		return this.formGroup.controls.translationText
-	}
-
-	get targetLangs(): FormControl<string[]> {
-		return this.formGroup.controls.targetLangs
-	}
-
-	get onlyPopularLangs(): FormControl<boolean> {
-		return this.formGroup.controls.onlyPopularLangs
-	}
 
 	originalOrder = (): number => {
 		return 0
 	}
 
 	constructor(
-		private formBuilder: NonNullableFormBuilder,
+		private formService: NgxGoogleTranslateUiFormService,
 		private googleService: GoogleTranslationService,
 		@Optional()
 		@Inject(MAT_DIALOG_DATA)
@@ -88,7 +60,7 @@ export class NgxGoogleTranslateUiComponent implements OnInit {
 	}
 
 	onPopularLangsChange(): void {
-		this.targetLangs.reset([])
+		this.formGroup.controls.targetLangs.reset([])
 	}
 
 	/**
@@ -102,8 +74,11 @@ export class NgxGoogleTranslateUiComponent implements OnInit {
 	 * @returns void - Resets the input value in textarea and selected target languages.
 	 */
 	onReset(): void {
-		this.translationText.reset('')
-		this.targetLangs.reset([])
+		this.formGroup.patchValue({
+			translationText: '',
+			targetLangs: []
+		})
+
 		this.search$.next(false)
 	}
 
@@ -120,32 +95,25 @@ export class NgxGoogleTranslateUiComponent implements OnInit {
 		ITranslationResult[] | undefined
 	> {
 		return this.search$.pipe(
-			switchMap(search =>
-				search
-					? this.getTranslations$(
-							this.apiKey.value,
-							this.targetLangs.value,
-							this.translationText.value
-					  )
-					: of(undefined)
-			)
+			switchMap(search => (search ? this.getTranslations$() : of(undefined)))
 		)
 	}
 
-	private getTranslations$(
-		apiKey: string,
-		targetLangs: string[],
-		text: string
-	): Observable<ITranslationResult[]> {
+	private getTranslations$(): Observable<ITranslationResult[]> {
+		const { apiKey, targetLangs, translationText } =
+			this.formGroup.getRawValue()
+
 		const translations$ = targetLangs.map(targetLang =>
-			this.googleService.getTranslation$(apiKey, targetLang, text).pipe(
-				map(translation => {
-					return {
-						language: LANGS[targetLang.toLowerCase()],
-						translate: translation.translatedText
-					}
-				})
-			)
+			this.googleService
+				.getTranslation$(apiKey, targetLang, translationText)
+				.pipe(
+					map(translation => {
+						return {
+							language: LANGS[targetLang.toLowerCase()],
+							translate: translation.translatedText
+						}
+					})
+				)
 		)
 
 		return forkJoin(translations$)

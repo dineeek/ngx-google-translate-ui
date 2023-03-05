@@ -1,9 +1,7 @@
 import { Component } from '@angular/core'
 import { MatDialog } from '@angular/material/dialog'
-import {
-	GoogleTranslateDialogModel,
-	NgxGoogleTranslateUiComponent
-} from 'ngx-google-translate-ui'
+import { NgxGoogleTranslateUiComponent } from 'ngx-google-translate-ui'
+import { INgxGoogleTranslateUiDialogData } from 'projects/ngx-google-translate-ui/src/public-api'
 
 @Component({
 	selector: 'app-root',
@@ -14,7 +12,7 @@ export class AppComponent {
 	constructor(private dialog: MatDialog) {}
 
 	openTranslationDialog() {
-		const dialogConfig: GoogleTranslateDialogModel = {
+		const dialogConfig: INgxGoogleTranslateUiDialogData = {
 			googleApiKey: 'asdfnasfn',
 			translationText: 'My dialog translation'
 		}

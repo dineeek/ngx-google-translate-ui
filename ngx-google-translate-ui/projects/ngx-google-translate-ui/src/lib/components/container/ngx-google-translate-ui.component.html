@@ -27,7 +27,7 @@
 				>
 					help_outline
 				</mat-icon>
-				<mat-error *ngIf="apiKey.invalid"
+				<mat-error *ngIf="formGroup.controls.apiKey.invalid"
 					>Required to fetch translations!</mat-error
 				>
 			</mat-form-field>
@@ -44,7 +44,7 @@
 					formControlName="translationText"
 					placeholder="Text to translate"
 				></textarea>
-				<mat-error *ngIf="translationText.invalid"
+				<mat-error *ngIf="formGroup.controls.translationText.invalid"
 					>Insert text to translate!</mat-error
 				>
 			</mat-form-field>
@@ -57,7 +57,7 @@
 					ngDefaultControl
 					multiple
 				>
-					<ng-container *ngIf="onlyPopularLangs.value">
+					<ng-container *ngIf="formGroup.controls.onlyPopularLangs.value">
 						<mat-option
 							*ngFor="
 								let popularLang of POPULAR_LANGS | keyvalue : originalOrder
@@ -67,7 +67,7 @@
 						>
 					</ng-container>
 
-					<ng-container *ngIf="!onlyPopularLangs.value">
+					<ng-container *ngIf="!formGroup.controls.onlyPopularLangs.value">
 						<mat-option
 							*ngFor="let lang of ALL_LANGS | keyvalue : originalOrder"
 							[value]="lang.key"
@@ -75,7 +75,7 @@
 						>
 					</ng-container>
 				</mat-select>
-				<mat-error *ngIf="targetLangs.invalid"
+				<mat-error *ngIf="formGroup.controls.targetLangs.invalid"
 					>Choose at least one target language!</mat-error
 				>
 			</mat-form-field>

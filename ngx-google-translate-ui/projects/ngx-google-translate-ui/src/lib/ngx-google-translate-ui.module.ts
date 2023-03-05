@@ -16,6 +16,7 @@ import { MatSliderModule } from '@angular/material/slider'
 import { MatSlideToggleModule } from '@angular/material/slide-toggle'
 import { NgxGoogleTranslateUiComponent } from './components/container/ngx-google-translate-ui.component'
 import { TranslationResultsComponent } from './components/presentation/translation-results/translation-results.component'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 
 @NgModule({
 	declarations: [NgxGoogleTranslateUiComponent, TranslationResultsComponent],
@@ -34,6 +35,7 @@ import { TranslationResultsComponent } from './components/presentation/translati
 		MatDialogModule,
 		MatSliderModule,
 		MatSlideToggleModule,
+		NoopAnimationsModule,
 		ClipboardModule
 	],
 	exports: [NgxGoogleTranslateUiComponent]

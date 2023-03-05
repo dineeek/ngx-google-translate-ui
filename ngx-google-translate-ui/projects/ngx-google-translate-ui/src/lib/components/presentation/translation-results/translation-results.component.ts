@@ -4,8 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar'
 @Component({
 	selector: 'lib-google-translation-results',
 	templateUrl: './translation-results.component.html',
-	styleUrls: ['./translation-results.component.scss'],
-	changeDetection: ChangeDetectionStrategy.OnPush
+	styleUrls: ['./translation-results.component.scss']
 })
 export class TranslationResultsComponent {
 	@Input()

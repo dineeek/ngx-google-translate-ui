@@ -1,11 +1,23 @@
 :host {
-	.spacer {
-		padding-bottom: 10px;
-	}
+	display: flex;
+	flex-flow: column nowrap;
+	row-gap: 15px;
+	font-family: Roboto, sans-serif;
 
-	.paragraph-text {
-		letter-spacing: 0.25px;
-		font-weight: 500;
+	.translations {
+		padding: 0 16px;
+
+		.language {
+			padding-bottom: 8px;
+		}
+
+		.result {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			color: rgba(0, 0, 0, 0.54);
+			font-size: 14px;
+		}
 	}
 
 	.clipboard-copy {
@@ -16,18 +28,5 @@
 	.copy-all {
 		display: flex;
 		justify-content: center;
-	}
-
-	::ng-deep .mat-list-base {
-		border-bottom: 1px solid;
-	}
-
-	::ng-deep .mat-list-item .mat-list-item-content {
-		justify-content: space-between;
-	}
-
-	::ng-deep .mat-list-base .mat-list-item.mat-list-item-with-avatar,
-	.mat-list-base .mat-list-option.mat-list-item-with-avatar {
-		height: fit-content !important;
 	}
 }

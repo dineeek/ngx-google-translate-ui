@@ -1,9 +1,7 @@
-<mat-list *ngFor="let translation of translations | keyvalue">
-	<mat-list-item>
-		<span class="spacer">
-			<p class="paragraph-text">{{ translation.key }}:</p>
-			{{ translation.value }}
-		</span>
+<div class="translations" *ngFor="let translation of translations | keyvalue">
+	<span class="language">{{ translation.key }}:</span>
+	<div class="result">
+		<span>{{ translation.value }}</span>
 
 		<button mat-icon-button>
 			<mat-icon
@@ -15,8 +13,8 @@
 				>content_copy</mat-icon
 			>
 		</button>
-	</mat-list-item>
-</mat-list>
+	</div>
+</div>
 
 <div class="copy-all">
 	<button

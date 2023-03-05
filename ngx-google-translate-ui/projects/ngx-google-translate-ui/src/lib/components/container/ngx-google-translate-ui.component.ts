@@ -24,8 +24,7 @@ export interface NgxGoogleTranslateUiForm {
 @Component({
 	selector: 'lib-ngx-google-translate-ui',
 	templateUrl: './ngx-google-translate-ui.component.html',
-	styleUrls: ['./ngx-google-translate-ui.component.scss'],
-	changeDetection: ChangeDetectionStrategy.OnPush
+	styleUrls: ['./ngx-google-translate-ui.component.scss']
 })
 export class NgxGoogleTranslateUiComponent implements OnInit {
 	readonly ALL_LANGS = LANGS
@@ -84,6 +83,7 @@ export class NgxGoogleTranslateUiComponent implements OnInit {
 	onSearch(): void {
 		this.translations = {}
 
+		// TODO call sequentialy and then assing translatiosn - reduce!
 		this.targetLangs.value.forEach(async (targetLang: string) => {
 			const body: GoogleTranslationBodyModel = {
 				q: this.translationText.value,

@@ -1,82 +1,65 @@
-<form [formGroup]="formGroup">
-	<mat-form-field
-		class="w-85"
-		appearance="fill"
-		*ngIf="formGroup.controls.apiKey.value"
+<mat-form-field class="w-80" appearance="fill">
+	<mat-label>Google API key</mat-label>
+	<input
+		matInput
+		[formControl]="formGroup.controls.apiKey"
+		placeholder="Google API key"
+		[type]="hideKey ? 'password' : 'text'"
+	/>
+
+	<mat-icon matSuffix (click)="hideKey = !hideKey">{{
+		hideKey ? 'visibility_off' : 'visibility'
+	}}</mat-icon>
+
+	<mat-icon
+		matPrefix
+		class="key-info"
+		(click)="onCloudCredentialsHelpClick($event)"
+		[matTooltip]="CLOUD_CRED_TOOLTIP_MSG"
+		matTooltipClass="tooltip-message"
+		matTooltipPosition="below"
 	>
-		<mat-label>Google API key</mat-label>
-		<input
-			id="apiKey"
-			matInput
-			formControlName="apiKey"
-			placeholder="Google API key"
-		/>
-		<mat-icon
-			matSuffix
-			class="cloud-credentials"
-			(click)="onCloudCredentialsHelpClick($event)"
-			[matTooltip]="CLOUD_CRED_TOOLTIP_MSG"
-			matTooltipPosition="below"
-		>
-			help_outline
-		</mat-icon>
-		<mat-error *ngIf="formGroup.controls.apiKey.invalid"
-			>Required to fetch translations!</mat-error
-		>
-	</mat-form-field>
-
-	<mat-form-field
-		[ngClass]="{
-			'full-width': true,
-			'pt-10': formGroup.controls.apiKey.value
-		}"
-		appearance="fill"
+		help_outline
+	</mat-icon>
+	<mat-error *ngIf="formGroup.controls.apiKey.invalid"
+		>Required field</mat-error
 	>
-		<mat-label>Insert text</mat-label>
-		<textarea
-			id="transText"
-			matInput
-			class="textarea"
-			formControlName="translationText"
-			placeholder="Text to translate"
-		></textarea>
-		<mat-error *ngIf="formGroup.controls.translationText.invalid"
-			>Insert text to translate!</mat-error
-		>
-	</mat-form-field>
+</mat-form-field>
 
-	<mat-form-field appearance="fill" class="full-width pt-10">
-		<mat-label>To</mat-label>
-		<mat-select
-			id="dropdown"
-			formControlName="targetLangs"
-			ngDefaultControl
-			multiple
-		>
-			<ng-container *ngIf="formGroup.controls.onlyPopularLangs.value">
-				<mat-option
-					*ngFor="let popularLang of POPULAR_LANGS | keyvalue : originalOrder"
-					[value]="popularLang.key"
-					>{{ popularLang.value }}</mat-option
-				>
-			</ng-container>
-
-			<ng-container *ngIf="!formGroup.controls.onlyPopularLangs.value">
-				<mat-option
-					*ngFor="let lang of ALL_LANGS | keyvalue : originalOrder"
-					[value]="lang.key"
-					>{{ lang.value }}</mat-option
-				>
-			</ng-container>
-		</mat-select>
-		<mat-error *ngIf="formGroup.controls.targetLangs.invalid"
-			>Choose at least one target language!</mat-error
-		>
-	</mat-form-field>
-
-	<mat-slide-toggle
-		formControlName="onlyPopularLangs"
-		(change)="onPopularLangsChange()"
-		>Only popular languages</mat-slide-toggle
+<mat-form-field class="full-width" appearance="fill">
+	<mat-label>Translation text</mat-label>
+	<textarea
+		matInput
+		class="textarea"
+		[formControl]="formGroup.controls.translationText"
+		placeholder="Text to translate"
+	></textarea>
+	<mat-error *ngIf="formGroup.controls.translationText.invalid"
+		>Required field</mat-error
 	>
-</form>
+</mat-form-field>
+
+<mat-form-field appearance="fill" class="full-width">
+	<mat-label>Languages</mat-label>
+	<mat-select [formControl]="formGroup.controls.targetLangs" multiple>
+		<mat-option
+			*ngFor="
+				let lang of (formGroup.controls.onlyPopularLangs.value
+					? POPULAR_LANGS
+					: ALL_LANGS
+				) | keyvalue : originalOrder
+			"
+			[value]="lang.key"
+			>{{ lang.value }}</mat-option
+		>
+	</mat-select>
+	<mat-error *ngIf="formGroup.controls.targetLangs.invalid"
+		>Choose at least one language</mat-error
+	>
+</mat-form-field>
+
+<mat-slide-toggle
+	[formControl]="formGroup.controls.onlyPopularLangs"
+	(change)="onPopularLangsChange()"
+	>Only popular languages</mat-slide-toggle
+>

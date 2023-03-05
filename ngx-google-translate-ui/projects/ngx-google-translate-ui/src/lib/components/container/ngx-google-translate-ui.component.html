@@ -15,7 +15,7 @@
 			id="reset"
 			mat-raised-button
 			(click)="onReset()"
-			matTooltip="Clear input and selected languages"
+			matTooltip="Clear text and selected languages"
 		>
 			Reset
 		</button>
@@ -26,7 +26,6 @@
 			color="primary"
 			(click)="onSearch()"
 			[disabled]="!formGroup.valid"
-			matTooltip="Fetch translations"
 		>
 			Translate
 		</button>

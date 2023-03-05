@@ -16,7 +16,7 @@ export class GoogleTranslationService {
 
 	/**
 	 * @param   apiKey - User's Google API key.
-	 * @param   targetLang - Language code used in translation.
+	 * @param   targetLang - Language code used in translation, ex. de.
 	 * @param   text - Text to translate.
 	 *
 	 * @returns Observable - Returns text translated into target language.
@@ -47,6 +47,8 @@ export class GoogleTranslationService {
 			})
 		)
 	}
+
+	// TODO promise version
 
 	private showErrorSnackbarMessage(
 		error: HttpErrorResponse

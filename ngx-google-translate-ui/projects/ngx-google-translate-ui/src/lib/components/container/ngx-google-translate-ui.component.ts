@@ -51,16 +51,10 @@ export class NgxGoogleTranslateUiComponent implements OnInit {
 		})
 	}
 
-	/**
-	 * @returns void - Fetches the translations from Cloud Translation API using the provided API key.
-	 */
 	onSearch(): void {
 		this.search$.next(true)
 	}
 
-	/**
-	 * @returns void - Resets the input value in textarea and selected target languages.
-	 */
 	onReset(): void {
 		this.formGroup.patchValue({
 			translationText: '',

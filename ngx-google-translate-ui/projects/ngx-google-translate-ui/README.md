@@ -38,10 +38,9 @@ npm install ngx-google-translate-ui
 # Usage
 
 <b>Google Translation API key is required to use this library.</b>
+**[Google cloud console](https://console.cloud.google.com)**
 
 The translation process is analogous to Google Translate.
-
-**[Google cloud console](https://console.cloud.google.com)**
 
 ## Standalone component
 
@@ -107,10 +106,17 @@ this.googleTranslationService.getTranslations$(
 Following resources can be imported from library:
 
 - NgxGoogleTranslateUiModule
-  - NgxGoogleTranslateUiComponent
-  - INgxGoogleTranslateUiDialogData
+  - Exports the NgxGoogleTranslateUiComponent
+- NgxGoogleTranslateUiComponent
+  - Used outside templates
+- INgxGoogleTranslateUiDialogData
+  - Used when component is a dialog component
 - GoogleTranslationService
-  - IGoogleTranslationsData & IGoogleTranslation
+  - Fetching Google translations
+- IGoogleTranslationsData
+  - The response of fetching translations
+- IGoogleTranslation
+  - The Google translations object
 
 # Contributing
 

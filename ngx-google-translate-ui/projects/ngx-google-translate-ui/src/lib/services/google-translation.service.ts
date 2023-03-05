@@ -1,14 +1,16 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { MatSnackBar } from '@angular/material/snack-bar'
-import { Observable, of, throwError } from 'rxjs'
+import { Observable, throwError } from 'rxjs'
 import { catchError, map } from 'rxjs/operators'
 import {
 	IGoogleTranslationRequest,
-	IGoogleTranslationResponse
+	IGoogleTranslationResponse,
+	IGoogleTranslationsData
 } from '../models'
 
-const BASE_URL = 'https://translation.googleapis.com/language/translate/v2?key='
+const GOOGLE_TRANSLATION_URL =
+	'https://translation.googleapis.com/language/translate/v2?key='
 
 @Injectable({ providedIn: 'root' })
 export class GoogleTranslationService {
@@ -16,39 +18,36 @@ export class GoogleTranslationService {
 
 	/**
 	 * @param   apiKey - User's Google API key.
-	 * @param   targetLang - Language code used in translation, ex. de.
-	 * @param   text - Text to translate.
+	 * @param   targetLang - Language code used in translation - (ISO-639 codes).
+	 * @param   text - Text to translate - one or multiple strings.
 	 *
-	 * @returns Observable - Returns text translated into target language.
+	 * @returns Observable - Returns texts translated into target language.
 	 */
 	getTranslation$(
 		apiKey: string,
 		targetLang: string,
-		text: string,
+		text: string | string[],
 		errorCallback?: () => Observable<any>
-	): Observable<IGoogleTranslationResponse> {
+	): Observable<IGoogleTranslationsData> {
 		const requestBody: IGoogleTranslationRequest = {
 			q: text,
 			target: targetLang
 		}
 
-		return this.httpClient.post(`${BASE_URL}${apiKey}`, requestBody).pipe(
-			map((response: any) => {
-				return {
-					translatedText: response.data.translations[0].translatedText,
-					detectedSourceLanguage:
-						response.data.translations[0].detectedSourceLanguage
-				} as IGoogleTranslationResponse
-			}),
-			catchError((error: HttpErrorResponse) => {
-				return errorCallback
-					? errorCallback()
-					: this.showErrorSnackbarMessage(error)
-			})
-		)
+		return this.httpClient
+			.post<IGoogleTranslationResponse>(
+				`${GOOGLE_TRANSLATION_URL}${apiKey}`,
+				requestBody
+			)
+			.pipe(
+				map((response: IGoogleTranslationResponse) => response.data),
+				catchError((error: HttpErrorResponse) => {
+					return errorCallback
+						? errorCallback()
+						: this.showErrorSnackbarMessage(error)
+				})
+			)
 	}
-
-	// TODO promise version
 
 	private showErrorSnackbarMessage(
 		error: HttpErrorResponse

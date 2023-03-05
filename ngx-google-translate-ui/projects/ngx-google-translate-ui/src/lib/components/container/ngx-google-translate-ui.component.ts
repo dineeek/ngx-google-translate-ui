@@ -8,7 +8,10 @@ import {
 import { MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { forkJoin, map, Observable, of, Subject, switchMap } from 'rxjs'
 import { LANGS } from '../../meta'
-import { INgxGoogleTranslateUiDialogData } from '../../models'
+import {
+	IGoogleTranslation,
+	INgxGoogleTranslateUiDialogData
+} from '../../models'
 import { GoogleTranslationService } from '../../services/google-translation.service'
 import { NgxGoogleTranslateUiFormService } from '../form'
 
@@ -80,10 +83,10 @@ export class NgxGoogleTranslateUiComponent implements OnInit {
 			this.googleService
 				.getTranslation$(apiKey, targetLang, translationText)
 				.pipe(
-					map(translation => {
+					map(result => {
 						return {
 							language: LANGS[targetLang.toLowerCase()],
-							translate: translation.translatedText
+							translate: result.translations?.[0]?.translatedText ?? ''
 						}
 					})
 				)

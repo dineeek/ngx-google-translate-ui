@@ -17,9 +17,14 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle'
 import { NgxGoogleTranslateUiComponent } from './components/container/ngx-google-translate-ui.component'
 import { TranslationResultsComponent } from './components/presentation/translation-results/translation-results.component'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
+import { TranslationFieldsComponent } from './components/presentation/translation-fields/translation-fields.component'
 
 @NgModule({
-	declarations: [NgxGoogleTranslateUiComponent, TranslationResultsComponent],
+	declarations: [
+		NgxGoogleTranslateUiComponent,
+		TranslationResultsComponent,
+		TranslationFieldsComponent
+	],
 	imports: [
 		CommonModule,
 		ReactiveFormsModule,

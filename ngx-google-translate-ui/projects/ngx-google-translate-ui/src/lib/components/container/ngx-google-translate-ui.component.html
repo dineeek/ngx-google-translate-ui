@@ -6,85 +6,7 @@
 
 	<mat-card-content>
 		<form [formGroup]="formGroup">
-			<mat-form-field
-				class="w-85"
-				appearance="fill"
-				*ngIf="!dialogData?.googleApiKey"
-			>
-				<mat-label>Google API key</mat-label>
-				<input
-					id="apiKey"
-					matInput
-					formControlName="apiKey"
-					placeholder="Google API key"
-				/>
-				<mat-icon
-					matSuffix
-					class="cloud-credentials"
-					(click)="onCloudCredentialsHelpClick($event)"
-					[matTooltip]="CLOUD_CRED_TOOLTIP_MSG"
-					matTooltipPosition="below"
-				>
-					help_outline
-				</mat-icon>
-				<mat-error *ngIf="formGroup.controls.apiKey.invalid"
-					>Required to fetch translations!</mat-error
-				>
-			</mat-form-field>
-
-			<mat-form-field
-				[ngClass]="{ 'full-width': true, 'pt-10': !dialogData?.googleApiKey }"
-				appearance="fill"
-			>
-				<mat-label>Insert text</mat-label>
-				<textarea
-					id="transText"
-					matInput
-					class="textarea"
-					formControlName="translationText"
-					placeholder="Text to translate"
-				></textarea>
-				<mat-error *ngIf="formGroup.controls.translationText.invalid"
-					>Insert text to translate!</mat-error
-				>
-			</mat-form-field>
-
-			<mat-form-field appearance="fill" class="full-width pt-10">
-				<mat-label>To</mat-label>
-				<mat-select
-					id="dropdown"
-					formControlName="targetLangs"
-					ngDefaultControl
-					multiple
-				>
-					<ng-container *ngIf="formGroup.controls.onlyPopularLangs.value">
-						<mat-option
-							*ngFor="
-								let popularLang of POPULAR_LANGS | keyvalue : originalOrder
-							"
-							[value]="popularLang.key"
-							>{{ popularLang.value }}</mat-option
-						>
-					</ng-container>
-
-					<ng-container *ngIf="!formGroup.controls.onlyPopularLangs.value">
-						<mat-option
-							*ngFor="let lang of ALL_LANGS | keyvalue : originalOrder"
-							[value]="lang.key"
-							>{{ lang.value }}</mat-option
-						>
-					</ng-container>
-				</mat-select>
-				<mat-error *ngIf="formGroup.controls.targetLangs.invalid"
-					>Choose at least one target language!</mat-error
-				>
-			</mat-form-field>
-
-			<mat-slide-toggle
-				formControlName="onlyPopularLangs"
-				(change)="onPopularLangsChange()"
-				>Only popular languages</mat-slide-toggle
-			>
+			<ngx-google-translation-fields></ngx-google-translation-fields>
 		</form>
 	</mat-card-content>
 
@@ -110,8 +32,8 @@
 		</button>
 	</mat-card-actions>
 
-	<lib-google-translation-results
+	<ngx-google-translation-results
 		*ngIf="translations$ | async as translations"
 		[translations]="translations"
-	></lib-google-translation-results>
+	></ngx-google-translation-results>
 </mat-card>

@@ -7,7 +7,7 @@ import {
 } from '@angular/core'
 import { MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { forkJoin, map, Observable, of, Subject, switchMap } from 'rxjs'
-import { CLOUD_CREDENTIALS_TOOLTIP_MSG, LANGS, POPULAR_LANGS } from '../../meta'
+import { LANGS } from '../../meta'
 import { INgxGoogleTranslateUiDialogData } from '../../models'
 import { GoogleTranslationService } from '../../services/google-translation.service'
 import { NgxGoogleTranslateUiFormService } from '../form'
@@ -25,18 +25,10 @@ export interface ITranslationResult {
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NgxGoogleTranslateUiComponent implements OnInit {
-	readonly ALL_LANGS = LANGS
-	readonly POPULAR_LANGS = POPULAR_LANGS
-	readonly CLOUD_CRED_TOOLTIP_MSG = CLOUD_CREDENTIALS_TOOLTIP_MSG
-
 	translations$: Observable<ITranslationResult[] | undefined> | undefined
 	formGroup = this.formService.createFormGroup()
 
 	private search$ = new Subject<boolean>()
-
-	originalOrder = (): number => {
-		return 0
-	}
 
 	constructor(
 		private formService: NgxGoogleTranslateUiFormService,
@@ -59,10 +51,6 @@ export class NgxGoogleTranslateUiComponent implements OnInit {
 		})
 	}
 
-	onPopularLangsChange(): void {
-		this.formGroup.controls.targetLangs.reset([])
-	}
-
 	/**
 	 * @returns void - Fetches the translations from Cloud Translation API using the provided API key.
 	 */
@@ -80,15 +68,6 @@ export class NgxGoogleTranslateUiComponent implements OnInit {
 		})
 
 		this.search$.next(false)
-	}
-
-	/**
-	 * @param  e - Event to stop propagation.
-	 * @returns void - navigates user to Google Cloud Console in the new browser tab.
-	 */
-	onCloudCredentialsHelpClick(e: Event): void {
-		e.stopPropagation()
-		window.open('https://console.cloud.google.com/', 'parent')
 	}
 
 	private setTranslationSearch$(): Observable<

@@ -1,6 +1,6 @@
 import { FormControl } from '@angular/forms'
 
-export interface NgxGoogleTranslateUiForm {
+export interface INgxGoogleTranslateUiForm {
 	apiKey: FormControl<string>
 	translationText: FormControl<string>
 	targetLangs: FormControl<string[]>

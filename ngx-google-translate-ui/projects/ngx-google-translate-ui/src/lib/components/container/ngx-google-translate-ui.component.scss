@@ -1,35 +1,13 @@
-.container {
-	display: flex;
-	flex-flow: column nowrap;
-	row-gap: 15px;
-	max-width: 600px;
-
-	.cloud-credentials {
-		cursor: pointer;
-		color: green;
-	}
-
-	.full-width {
-		width: 100%;
-	}
-
-	.textarea {
-		width: 100%;
-		height: 80px;
-		resize: none;
-		vertical-align: top;
+:host {
+	.container {
+		display: flex;
+		flex-flow: column nowrap;
+		row-gap: 15px;
+		max-width: 600px;
 	}
 
 	.actions {
-		column-gap: 12px;
+		column-gap: 15px;
 		padding-right: 16px;
 	}
-}
-
-.w-85 {
-	width: 85%;
-}
-
-.pt-10 {
-	padding-top: 10px;
 }

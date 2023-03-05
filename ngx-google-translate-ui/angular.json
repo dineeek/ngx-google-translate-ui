@@ -18,29 +18,101 @@
 					"configurations": {
 						"production": {
 							"tsConfig": "projects/ngx-google-translate-ui/tsconfig.lib.prod.json"
+						},
+						"development": {
+							"tsConfig": "projects/ngx-google-translate-ui/tsconfig.lib.json"
 						}
+					}
+				}
+			}
+		},
+		"demo": {
+			"projectType": "application",
+			"schematics": {
+				"@schematics/angular:component": {
+					"style": "scss"
+				}
+			},
+			"root": "projects/demo",
+			"sourceRoot": "projects/demo/src",
+			"prefix": "app",
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-angular:browser",
+					"options": {
+						"outputPath": "dist/demo",
+						"index": "projects/demo/src/index.html",
+						"main": "projects/demo/src/main.ts",
+						"polyfills": ["zone.js"],
+						"tsConfig": "projects/demo/tsconfig.app.json",
+						"inlineStyleLanguage": "scss",
+						"assets": [
+							"projects/demo/src/favicon.ico",
+							"projects/demo/src/assets"
+						],
+						"styles": ["projects/demo/src/styles.scss"],
+						"scripts": []
+					},
+					"configurations": {
+						"production": {
+							"budgets": [
+								{
+									"type": "initial",
+									"maximumWarning": "500kb",
+									"maximumError": "1mb"
+								},
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "2kb",
+									"maximumError": "4kb"
+								}
+							],
+							"outputHashing": "all"
+						},
+						"development": {
+							"buildOptimizer": false,
+							"optimization": false,
+							"vendorChunk": true,
+							"extractLicenses": false,
+							"sourceMap": true,
+							"namedChunks": true
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"serve": {
+					"builder": "@angular-devkit/build-angular:dev-server",
+					"configurations": {
+						"production": {
+							"browserTarget": "demo:build:production"
+						},
+						"development": {
+							"browserTarget": "demo:build:development"
+						}
+					},
+					"defaultConfiguration": "development"
+				},
+				"extract-i18n": {
+					"builder": "@angular-devkit/build-angular:extract-i18n",
+					"options": {
+						"browserTarget": "demo:build"
 					}
 				},
 				"test": {
 					"builder": "@angular-devkit/build-angular:karma",
 					"options": {
-						"main": "projects/ngx-google-translate-ui/src/test.ts",
-						"tsConfig": "projects/ngx-google-translate-ui/tsconfig.spec.json",
-						"karmaConfig": "projects/ngx-google-translate-ui/karma.conf.js"
-					}
-				},
-				"lint": {
-					"builder": "@angular-devkit/build-angular:tslint",
-					"options": {
-						"tsConfig": [
-							"projects/ngx-google-translate-ui/tsconfig.lib.json",
-							"projects/ngx-google-translate-ui/tsconfig.spec.json"
+						"polyfills": ["zone.js", "zone.js/testing"],
+						"tsConfig": "projects/demo/tsconfig.spec.json",
+						"inlineStyleLanguage": "scss",
+						"assets": [
+							"projects/demo/src/favicon.ico",
+							"projects/demo/src/assets"
 						],
-						"exclude": ["**/node_modules/**"]
+						"styles": ["projects/demo/src/styles.scss"],
+						"scripts": []
 					}
 				}
 			}
 		}
-	},
-	"defaultProject": "ngx-google-translate-ui"
+	}
 }

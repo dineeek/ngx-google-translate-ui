@@ -1,0 +1,31 @@
+:host {
+	display: flex;
+	flex-flow: column nowrap;
+	row-gap: 15px;
+	font-family: Roboto, sans-serif;
+
+	.translations {
+		display: flex;
+		flex-flow: column nowrap;
+		row-gap: 4px;
+		padding: 0 16px;
+
+		&__result {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			column-gap: 10px;
+			color: rgba(0, 0, 0, 0.54);
+			font-size: 14px;
+			text-align: left;
+		}
+	}
+
+	.copy-all {
+		align-self: center;
+	}
+
+	.breaker {
+		margin-top: 12px;
+	}
+}

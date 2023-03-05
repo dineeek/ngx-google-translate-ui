@@ -1,0 +1,13 @@
+:host {
+	.container {
+		display: flex;
+		flex-flow: column nowrap;
+		row-gap: 15px;
+		max-width: 600px;
+	}
+
+	.actions {
+		column-gap: 15px;
+		padding-right: 16px;
+	}
+}

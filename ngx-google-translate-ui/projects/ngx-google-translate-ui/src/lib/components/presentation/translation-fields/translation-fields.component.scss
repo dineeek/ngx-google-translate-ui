@@ -1,0 +1,35 @@
+:host {
+	display: flex;
+	flex-flow: column nowrap;
+	row-gap: 10px;
+
+	.tooltip-message {
+		white-space: pre-line;
+	}
+
+	.key-info {
+		cursor: pointer;
+		color: green;
+	}
+
+	.w-80 {
+		width: 80%;
+	}
+
+	.full-width {
+		width: 100%;
+	}
+
+	.textarea {
+		width: 100%;
+		height: 100px;
+	}
+
+	mat-form-field {
+		font-size: 14px;
+	}
+
+	mat-select {
+		font-size: 14px;
+	}
+}

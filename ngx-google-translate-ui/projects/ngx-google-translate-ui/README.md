@@ -1,6 +1,6 @@
 # ngx-google-translate-ui
 
-An Angular Material UI for Google Translate（based on Cloud Translation API).
+Angular Material UI library for Google Translate based on Cloud Translation API.
 
 <p align="start">
     <a href="https://travis-ci.com/dineeek/ngx-google-translate-ui"><img src="https://travis-ci.com/dineeek/ngx-google-translate-ui.svg?token=YSspYgvLPX2y3Q9zRFxp&branch=main" /></a>
@@ -12,70 +12,118 @@ An Angular Material UI for Google Translate（based on Cloud Translation API).
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fdineeek%2Fngx-google-translate-ui.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fdineeek%2Fngx-google-translate-ui?ref=badge_shield)
 
-# Feature
+# Features
 
 - Text translation
 - Auto language detection
 - Multiple language translation
-- Fast and reliable – it uses the same servers that [translate.google.com](https://translate.google.com/) uses
+- Fast and reliable – uses the Google translate servers
+- Copy translation result copied to clipboard per language or
+- Copy all translations to clipboard as raw JSON data
 
-**[View live demo on StackBlitz.](https://ngx-google-translate-ui.stackblitz.io)**
+**[View live demo on StackBlitz](https://ngx-google-translate-ui.stackblitz.io)**
+
+<p align="center">
+  <img src="https://github.com/dineeek/ngx-google-translate-ui/blob/main/assets/ngx-google-translate-ui.png" alt="Google translate" />
+</p>
 
 # Install
 
 ```shell
-npm install --save ngx-google-translate-ui
+
+npm install ngx-google-translate-ui
+
 ```
 
 # Usage
 
-To use this library you need to provide Google API key.
+<b>Google Translation API key is required to use this library.</b>
+**[Google cloud console](https://console.cloud.google.com)**
 
-Process of translation is analog as in the real Google translator.
+The translation process is analogous to Google Translate.
 
-![Translator UI](https://github.com/dineeek/ngx-google-translate-ui/blob/main/ui.png?raw=true)
+## Standalone component
 
-The output of translation can be separately copied to clipboard to manipulate or it can be coped as raw JSON data.
-
-This library can be used in your project as MatDialog. Provide data as type of `GoogleTranslateDialogModel`. The required data is Google API key and optional translationText.
-In that way the input field for a API key won't be visible and it will be remembered for fetching translations.
-
-Without providing dialog configuration data, the API key input field will be visible.
-
-```typescript
-import {NgxGoogleTranslateUiComponent} from 'ngx-google-translate-ui';
-...
-openDialog() {
-    const dialogConfig: GoogleTranslateDialogModel = {
-        apiKey: 'YOUR_GOOGLE_API_KEY',
-	    translationText?: 'My hand is broken!"; //Optional
-    }
-
-    const dialogRef = this.dialog.open(NgxGoogleTranslateUiComponent, {data: dialogConfig});
-}
-...
+```html
+<ngx-google-translate-ui></ngx-google-translate-ui>
 ```
 
-There is also exported service for fetching translation using POST method.
+Library can be used as an standalone component without requiring any input
+values.
+
+## Dialog component
+
+This library can be used as a dialog component.
+
+Use `INgxGoogleTranslateUiDialogData` interface to provide initial dialog data.
 
 ```typescript
+
+import { NgxGoogleTranslateUiComponent } from 'ngx-google-translate-ui';
+
+openDialog () {
+  const dialogConfig: INgxGoogleTranslateUiDialogData = {
+    googleApiKey: '<YOUR_GOOGLE_API_KEY>',
+    translationText: 'How you doin?'
+  };
+
+  const dialogRef = this.dialog.open(NgxGoogleTranslateUiComponent, {
+			data: dialogConfig,
+			minWidth: '600px'
+	})
+}
+
+```
+
+## Google translation service
+
+Library exports `GoogleTranslationService` so it can be used separately from
+components.
+
+The `getTranslation$` method is used to fetch translations. It requires three
+parameters:
+
+- apiKey - User's Google API key.
+- targetLang - Language code used in translation - ISO-639 codes.
+- text - Text to translate - one or multiple strings.
+
+```typescript
+
 import { GoogleTranslationService } from 'ngx-google-translate-ui';
-...
-constructor(private googleService: GoogleTranslationService){
 
-}
+constructor (private googleTranslationService: GoogleTranslationService){}
 
-const body: GoogleTranslationBodyModel {
-    q: 'Vehicle',
-    target: 'de'
-}
+this.googleTranslationService.getTranslations$(
+			'<YOUR_GOOGLE_API_KEY>',
+			'en',
+			['Whats up?', 'Nothing much!']
+)
 
-this.googleService.getTranslations('your_api_key', body); // returns Observable of GoogleTranslation (translatedText and detectedSourceLanguage)
-...
 ```
+
+## Exposed resources
+
+Following resources can be imported from library:
+
+- NgxGoogleTranslateUiModule
+  - Exports the NgxGoogleTranslateUiComponent
+- NgxGoogleTranslateUiComponent
+  - Used outside templates
+- INgxGoogleTranslateUiDialogData
+  - Used when component is a dialog component
+- GoogleTranslationService
+  - Fetching Google translations
+- IGoogleTranslationsData
+  - The response of fetching translations
+- IGoogleTranslation
+  - The Google translations object
+
+# Contributing
+
+Contributions are welcome!
 
 # License
 
 Apache License
 
-Copyright (c) 2021 Dino Klicek
+Copyright (c) 2023 Dino Klicek

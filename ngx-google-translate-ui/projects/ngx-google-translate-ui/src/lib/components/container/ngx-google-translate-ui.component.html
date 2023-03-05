@@ -1,0 +1,38 @@
+<mat-card class="container">
+	<mat-card-header>
+		<mat-card-title>Google Multi Translator</mat-card-title>
+		<mat-card-subtitle>Cloud Translation API</mat-card-subtitle>
+	</mat-card-header>
+
+	<mat-card-content>
+		<form [formGroup]="formGroup">
+			<ngx-google-translation-fields></ngx-google-translation-fields>
+		</form>
+	</mat-card-content>
+
+	<mat-card-actions align="end" class="actions">
+		<button
+			id="reset"
+			mat-raised-button
+			(click)="onReset()"
+			matTooltip="Clear text and selected languages"
+		>
+			Reset
+		</button>
+
+		<button
+			id="search"
+			mat-raised-button
+			color="primary"
+			(click)="onSearch()"
+			[disabled]="!formGroup.valid"
+		>
+			Translate
+		</button>
+	</mat-card-actions>
+
+	<ngx-google-translation-results
+		*ngIf="translations$ | async as translations"
+		[translationResult]="translations"
+	></ngx-google-translation-results>
+</mat-card>

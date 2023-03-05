@@ -6,7 +6,16 @@ import {
 	Optional
 } from '@angular/core'
 import { MAT_DIALOG_DATA } from '@angular/material/dialog'
-import { forkJoin, map, Observable, of, Subject, switchMap } from 'rxjs'
+import {
+	catchError,
+	EMPTY,
+	forkJoin,
+	map,
+	Observable,
+	of,
+	Subject,
+	switchMap
+} from 'rxjs'
 import { LANGS } from '../../meta'
 import {
 	INgxGoogleTranslateUiDialogData,
@@ -83,7 +92,8 @@ export class NgxGoogleTranslateUiComponent implements OnInit {
 							language: LANGS[targetLang.toLowerCase()],
 							translation: result.translations?.[0]?.translatedText ?? ''
 						}
-					})
+					}),
+					catchError(() => EMPTY)
 				)
 		)
 

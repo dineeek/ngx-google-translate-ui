@@ -20,6 +20,8 @@ export class GoogleTranslationService {
 	 * @param   apiKey - User's Google API key.
 	 * @param   targetLang - Language code used in translation - (ISO-639 codes).
 	 * @param   text - Text to translate - one or multiple strings.
+	 * @param   errorCallback - Optional, custom error callback function. Defaulted to snackbar message and rethrow error.
+	 *
 	 *
 	 * @returns Observable - Returns texts translated into target language.
 	 */

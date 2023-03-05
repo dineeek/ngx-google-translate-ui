@@ -87,6 +87,8 @@ parameters:
 - apiKey - User's Google API key.
 - targetLang - Language code used in translation - ISO-639 codes.
 - text - Text to translate - one or multiple strings.
+- errorCallback - Optional, custom error callback function. Defaulted to
+  snackbar message and rethrow error.
 
 ```typescript
 

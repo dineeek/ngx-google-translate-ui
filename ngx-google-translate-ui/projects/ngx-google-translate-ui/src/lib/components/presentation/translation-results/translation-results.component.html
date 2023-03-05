@@ -18,14 +18,13 @@
 	<mat-divider class="breaker"></mat-divider>
 </div>
 
-<div class="copy-all">
-	<button
-		mat-icon-button
-		color="primary"
-		[cdkCopyToClipboard]="onCopyAll()"
-		(click)="openSnackBar()"
-		matTooltip="Copy all translated data"
-	>
-		<mat-icon>copy_all</mat-icon>
-	</button>
-</div>
+<button
+	class="copy-all"
+	mat-icon-button
+	color="primary"
+	[cdkCopyToClipboard]="onCopyAll()"
+	(click)="openSnackBar()"
+	matTooltip="Copy all translated data"
+>
+	<mat-icon>copy_all</mat-icon>
+</button>

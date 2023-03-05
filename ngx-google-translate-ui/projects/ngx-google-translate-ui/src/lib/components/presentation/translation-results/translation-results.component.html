@@ -1,11 +1,12 @@
-<div class="translations" *ngFor="let translation of translations">
-	<span class="translations__language">{{ translation.language }}:</span>
+<div class="translations" *ngFor="let translation of translationResult">
+	<span>{{ translation.language }}:</span>
+
 	<div class="translations__result">
-		<span>{{ translation.translate }}</span>
+		<span>{{ translation.translation }}</span>
 
 		<button
 			mat-icon-button
-			[cdkCopyToClipboard]="translation.translate"
+			[cdkCopyToClipboard]="translation.translation"
 			(click)="openSnackBar(translation.language)"
 		>
 			<mat-icon matListIcon matTooltip="Copy translation"
@@ -13,6 +14,8 @@
 			>
 		</button>
 	</div>
+
+	<mat-divider class="breaker"></mat-divider>
 </div>
 
 <div class="copy-all">

@@ -10,7 +10,7 @@ import { ITranslationResult } from '../../container/ngx-google-translate-ui.comp
 })
 export class TranslationResultsComponent {
 	@Input()
-	translations: ITranslationResult[] = []
+	translationResult: ITranslationResult[] = []
 
 	constructor(private snackBar: MatSnackBar) {}
 
@@ -28,10 +28,7 @@ export class TranslationResultsComponent {
 		)
 	}
 
-	/**
-	 * @returns string - JSON stringified fetched translations.
-	 */
 	onCopyAll(): string {
-		return JSON.stringify(this.translations)
+		return JSON.stringify(this.translationResult)
 	}
 }

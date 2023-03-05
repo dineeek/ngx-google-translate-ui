@@ -34,9 +34,10 @@
 
 - Added popular languages
 
-### 1.2.0
+### 2.0.0
 
 #### Angular 15 support
 
 - Support up to v15
-- Code refactoring
+- Massive code refactoring and improvements
+- Breaking changes done

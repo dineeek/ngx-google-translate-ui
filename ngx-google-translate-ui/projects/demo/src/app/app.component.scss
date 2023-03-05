@@ -1,0 +1,9 @@
+:host {
+	display: flex;
+	flex-direction: column;
+	row-gap: 50px;
+
+	button {
+		max-width: 180px;
+	}
+}

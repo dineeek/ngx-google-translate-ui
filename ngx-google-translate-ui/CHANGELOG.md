@@ -33,3 +33,10 @@
 #### Popular langs
 
 - Added popular languages
+
+### 1.2.0
+
+#### Angular 15 support
+
+- Support up to v15
+- Code refactoring

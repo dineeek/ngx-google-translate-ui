@@ -3,7 +3,10 @@ import { Injectable } from '@angular/core'
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { Observable, of, throwError } from 'rxjs'
 import { catchError, map } from 'rxjs/operators'
-import { GoogleTranslationBodyModel, GoogleTranslation } from '../models'
+import {
+	IGoogleTranslationRequest,
+	IGoogleTranslationResponse
+} from '../models'
 
 const BASE_URL = 'https://translation.googleapis.com/language/translate/v2?key='
 
@@ -16,17 +19,23 @@ export class GoogleTranslationService {
 	 * @param   transBody - Body to use in POST method.
 	 * @returns Observable - Fetched translations as Observable of type GoogleTranslation.
 	 */
-	getTranslations(
+	getTranslation$(
 		apiKey: string,
-		transBody: GoogleTranslationBodyModel
-	): Observable<GoogleTranslation> {
-		return this.httpClient.post(`${BASE_URL}${apiKey}`, transBody).pipe(
+		target: string,
+		text: string
+	): Observable<IGoogleTranslationResponse> {
+		const requestBody: IGoogleTranslationRequest = {
+			q: text,
+			target
+		}
+
+		return this.httpClient.post(`${BASE_URL}${apiKey}`, requestBody).pipe(
 			map((response: any) => {
 				return {
 					translatedText: response.data.translations[0].translatedText,
 					detectedSourceLanguage:
 						response.data.translations[0].detectedSourceLanguage
-				} as GoogleTranslation
+				} as IGoogleTranslationResponse
 			}),
 			catchError(error => {
 				this.snackBar.open(

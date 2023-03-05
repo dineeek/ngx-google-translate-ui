@@ -1,9 +1,9 @@
-export interface GoogleTranslationBodyModel {
+export interface IGoogleTranslationRequest {
 	q: string
 	target: string
 }
 
-export interface GoogleTranslation {
+export interface IGoogleTranslationResponse {
 	translatedText: string
 	detectedSourceLanguage: string
 }

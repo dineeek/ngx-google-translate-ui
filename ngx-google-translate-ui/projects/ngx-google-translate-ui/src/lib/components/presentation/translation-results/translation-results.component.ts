@@ -1,14 +1,16 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 import { MatSnackBar } from '@angular/material/snack-bar'
+import { ITranslationResult } from '../../container/ngx-google-translate-ui.component'
 
 @Component({
 	selector: 'lib-google-translation-results',
 	templateUrl: './translation-results.component.html',
-	styleUrls: ['./translation-results.component.scss']
+	styleUrls: ['./translation-results.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TranslationResultsComponent {
 	@Input()
-	translations: { [key: string]: string } = {}
+	translations: ITranslationResult[] = []
 
 	constructor(private snackBar: MatSnackBar) {}
 

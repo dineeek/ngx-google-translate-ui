@@ -55,7 +55,7 @@
 					ngDefaultControl
 					multiple
 				>
-					<ng-container *ngIf="popularLangsToggle.value">
+					<ng-container *ngIf="onlyPopularLangs.value">
 						<mat-option
 							*ngFor="
 								let popularLang of POPULAR_LANGS | keyvalue : originalOrder
@@ -65,7 +65,7 @@
 						>
 					</ng-container>
 
-					<ng-container *ngIf="!popularLangsToggle.value">
+					<ng-container *ngIf="!onlyPopularLangs.value">
 						<mat-option
 							*ngFor="let lang of ALL_LANGS | keyvalue : originalOrder"
 							[value]="lang.key"
@@ -78,8 +78,8 @@
 				>
 			</mat-form-field>
 
-			<mat-slide-toggle formControlName="popularLangsToggle"
-				>Popular languages</mat-slide-toggle
+			<mat-slide-toggle formControlName="onlyPopularLangs"
+				>Only popular languages</mat-slide-toggle
 			>
 		</div>
 	</mat-card-content>
@@ -106,7 +106,7 @@
 	</mat-card-actions>
 
 	<lib-google-translation-results
-		*ngIf="(translations | keyvalue)?.length"
+		*ngIf="translations$ | async as translations"
 		[translations]="translations"
 	></lib-google-translation-results>
 </mat-card>

@@ -1,4 +1,8 @@
 :host {
+	display: flex;
+	flex-flow: column nowrap;
+	row-gap: 10px;
+
 	.tooltip-message {
 		white-space: pre-line;
 	}

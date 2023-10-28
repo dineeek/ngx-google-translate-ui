@@ -32,8 +32,10 @@ import { NgxGoogleTranslateUiFormService } from '../form'
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NgxGoogleTranslateUiComponent implements OnInit {
-	translations$: Observable<ITranslationResultUi[] | undefined> | undefined
-	formGroup = this.formService.createFormGroup()
+	protected translations$:
+		| Observable<ITranslationResultUi[] | undefined>
+		| undefined
+	protected formGroup = this.formService.formGroup
 
 	private search$ = new Subject<boolean>()
 

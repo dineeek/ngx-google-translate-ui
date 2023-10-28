@@ -1,8 +1,12 @@
 import { FormControl } from '@angular/forms'
 
-export interface INgxGoogleTranslateUiForm {
-	apiKey: FormControl<string>
-	translationText: FormControl<string>
-	targetLangs: FormControl<string[]>
-	onlyPopularLangs: FormControl<boolean>
+export interface INgxGoogleTranslateUi {
+	apiKey: string
+	translationText: string
+	targetLangs: string[]
+	onlyPopularLangs: boolean
+}
+
+export type INgxGoogleTranslateUiForm = {
+	[K in keyof INgxGoogleTranslateUi]: FormControl<INgxGoogleTranslateUi[K]>
 }
